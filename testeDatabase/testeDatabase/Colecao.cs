@@ -9,13 +9,16 @@ namespace testeDatabase
 {
     class Colecao : INotifyPropertyChanged
     {
-        private List<String> vet;
+        private List<string> vet;
         public Colecao()
         {
-            vet = new List<String>();
+            vet = new List<string>();
             vet.Add("casa");
             vet.Add("carro");
         }
+
+        public void adiciona(string s) { vet.Add(s); }
+        public List<string> getVet() { return vet; }
 
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(String propertyName)

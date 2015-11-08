@@ -12,17 +12,13 @@ namespace testeDatabase
 {
     public partial class Form1 : Form
     {
-        private String nome;
         public Form1()
         {
+            Colecao c = new Colecao();
+            c.adiciona("AP");
             InitializeComponent();
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            nome = textBox1.Text;
-            textBox2.Text = nome;
-            listBox1.Items.Add(" jkasdka");
-        }
+        
+        
     }
 }

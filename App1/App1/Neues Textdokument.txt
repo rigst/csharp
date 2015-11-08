@@ -1,0 +1,35 @@
+ private Gerenciador cond = new Gerenciador();
+        private FlipView listaCondominios;
+        private ListBox listaBlocos;
+
+        public MainPage()
+        {
+            this.InitializeComponent();
+            
+            cond.addCondominio("NOVO CONDOMINIO");
+            cond.addCondominio("Cond 2");
+            cond.addCondominio("con 3");
+
+            //LISTA CONDOMINIOS
+            listaCondominios = flipView;
+            listaCondominios.ItemsSource = cond;
+            /*
+            //LISTA BLOCOS
+            listaBlocos = listBox;   
+
+            //ESPECIFICO
+            listBox.ItemsSource = cond;*/
+        }
+
+        private void add_Click(object sender, RoutedEventArgs e)
+        {
+            String s = textBox.Text;
+            cond.addCondominio(s);
+        }
+
+        private void flipView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Condominio c = (Condominio)flipView.SelectedItem;
+            listaBlocos.ItemsSource = c;
+            textoCond.Text = c.ToStringEspecifico();
+        }

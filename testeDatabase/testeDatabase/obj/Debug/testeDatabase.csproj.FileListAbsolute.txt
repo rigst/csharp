@@ -7,3 +7,12 @@ H:\testeDatabase\testeDatabase\obj\Debug\testeDatabase.Properties.Resources.reso
 H:\testeDatabase\testeDatabase\obj\Debug\testeDatabase.csproj.GenerateResource.Cache
 H:\testeDatabase\testeDatabase\obj\Debug\testeDatabase.exe
 H:\testeDatabase\testeDatabase\obj\Debug\testeDatabase.pdb
+C:\Users\rodri\csharp\testeDatabase\testeDatabase\bin\Debug\testeDatabase.exe.config
+C:\Users\rodri\csharp\testeDatabase\testeDatabase\obj\Debug\testeDatabase.exe
+C:\Users\rodri\csharp\testeDatabase\testeDatabase\obj\Debug\testeDatabase.pdb
+C:\Users\rodri\csharp\testeDatabase\testeDatabase\bin\Debug\testeDatabase.exe
+C:\Users\rodri\csharp\testeDatabase\testeDatabase\bin\Debug\testeDatabase.pdb
+C:\Users\rodri\csharp\testeDatabase\testeDatabase\obj\Debug\testeDatabase.csprojResolveAssemblyReference.cache
+C:\Users\rodri\csharp\testeDatabase\testeDatabase\obj\Debug\testeDatabase.Form1.resources
+C:\Users\rodri\csharp\testeDatabase\testeDatabase\obj\Debug\testeDatabase.Properties.Resources.resources
+C:\Users\rodri\csharp\testeDatabase\testeDatabase\obj\Debug\testeDatabase.csproj.GenerateResource.Cache
