@@ -8,6 +8,11 @@
     mc:Ignorable="d">
     <Page.TopAppBar>
         <CommandBar>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton x:Name="btSalvar" Label="Salvar" Icon="Save"/>
+                <AppBarButton x:Name="btSalvarLocal" Label="Salvar Como" Icon="SaveLocal"/>
+                <AppBarButton x:Name="btCarregar" Label="Carregar" Icon="OpenLocal"/>
+            </CommandBar.SecondaryCommands>
             <CommandBar.Content>
                 <Grid/>
             </CommandBar.Content>
@@ -18,11 +23,34 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="161*"/>
+            <ColumnDefinition Width="253*"/>
+            <ColumnDefinition Width="866*"/>
         </Grid.ColumnDefinitions>
-        <ListBox x:Name="listBox" Grid.Column="1" HorizontalAlignment="Center" Height="590" Margin="0" VerticalAlignment="Center" Width="252" Background="#FFE6E6E6"/>
-        <ListView x:Name="BlocosListView" HorizontalAlignment="Center" Height="486" Margin="0" VerticalAlignment="Center" Width="186" Background="#FFE6E6E6" ItemsSource="{Binding Blocos}"/>
+
+        <ListView x:Name="BlocosListView" HorizontalAlignment="Center" Height="530" Margin="24,112,18,78" VerticalAlignment="Center" Width="119" Background="#FFE6E6E6" ItemsSource="{x:Bind ViewModel.Blocos, Mode=OneWay}" IsItemClickEnabled="True" ItemClick="BlocosListView_ItemClick" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
+        <Grid Grid.Column="2" Margin="24,62,20,26" Background="#FFE6E6E6">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="21*"/>
+                <RowDefinition Height="16*"/>
+                <RowDefinition Height="121*"/>
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="ApNumero" HorizontalAlignment="Center" Margin="144,12,144,11" TextWrapping="Wrap" VerticalAlignment="Center" Height="61" Width="180" Style="{StaticResource HeaderTextBlockStyle}" FontSize="40"  Text="{x:Bind ViewModel.ApAtual.Numero, Mode=OneWay}" TextAlignment="Center"/>
+            <TextBlock x:Name="Ap_Box" HorizontalAlignment="Right" Margin="0,0,8,0" TextWrapping="Wrap" VerticalAlignment="Center" Height="43" Width="64" Style="{StaticResource SubheaderTextBlockStyle}" FontSize="26.667" TextAlignment="Center" Text="{x:Bind ViewModel.ApAtual.Box, Mode=OneWay}"/>
+            <TextBlock x:Name="Ap_Nome" HorizontalAlignment="Left" Margin="16,14,0,13" TextWrapping="Wrap" VerticalAlignment="Center" Height="37" Width="426" Style="{StaticResource HeaderTextBlockStyle}" FontSize="26.667" Grid.Row="1" Text="{x:Bind ViewModel.ApAtual.Nome, Mode=OneWay}"/>
+            <Grid Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <ListView x:Name="CotasListView" Background="#FFCBCBCB" ItemsSource="{x:Bind ViewModel.ApAtual.Cotas, Mode=OneWay}" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
+                <ListView x:Name="AcordosListView" Background="#FFF1F1F1" ItemsSource="{x:Bind ViewModel.ApAtual.Acordos, Mode=OneWay}" ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.Row="1"/>
+            </Grid>
+        </Grid>
+        <ListView x:Name="ApListView" HorizontalAlignment="Center" Height="525" Margin="21,114,27,81" VerticalAlignment="Center" Width="205" Background="#FFE6E6E6" ItemsSource="{x:Bind ViewModel.Apartamentos, Mode=OneWay}" IsItemClickEnabled="True" ItemClick="ApListView_ItemClick" ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.Column="1"/>
     </Grid>
 </Page>

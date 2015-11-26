@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -25,13 +26,15 @@ namespace Escritorio_v2
         public MainPage()
         {
             this.InitializeComponent();
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
             App minhaApp = (App)App.Current;
             this.DataContext = minhaApp.Gerenciador;
         }
 
         private void listView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            this.Frame.Navigate(typeof(BlocoApPage),e.ClickedItem);
+            string s = ((Condominio)e.ClickedItem).Nome;
+            this.Frame.Navigate(typeof(BlocoApPage),((Condominio)e.ClickedItem).Nome);
         }
     }
 }

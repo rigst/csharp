@@ -8,6 +8,11 @@
     mc:Ignorable="d">
     <Page.TopAppBar>
         <CommandBar>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton x:Name="btSalvar" Label="Salvar" Icon="Save"/>
+                <AppBarButton x:Name="btSalvarLocal" Label="Salvar Como" Icon="SaveLocal"/>
+                <AppBarButton x:Name="btCarregarLocal" Label="Carregar Arquivo" Icon="OpenLocal"/>
+            </CommandBar.SecondaryCommands>
             <CommandBar.Content>
                 <Grid/>
             </CommandBar.Content>
@@ -17,7 +22,7 @@
     </Page.TopAppBar>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <ListView x:Name="CondominiosListView" HorizontalAlignment="Center" Height="391" Margin="0" VerticalAlignment="Center" Width="634" Background="#FFE6E6E6" ItemsSource="{Binding Condominios}" CanReorderItems="True" CanDragItems="True" IsItemClickEnabled="True" ItemClick="listView_ItemClick"/>
+        <ListView x:Name="CondominiosListView" HorizontalAlignment="Center" Height="391" Margin="0" VerticalAlignment="Center" Width="634" Background="#FFE6E6E6" ItemsSource="{Binding Condominios}" CanReorderItems="True" CanDragItems="True" IsItemClickEnabled="True" ItemClick="listView_ItemClick" SelectionMode="None" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
 
     </Grid>
 </Page>

@@ -9,15 +9,24 @@ namespace Escritorio_v2
 
     public class Apartamento
     {
-        private String nome;
-        private int numero, box;
+        private string nome;
+        private int numero;
+        private string box;
         private List<Cota> cotas;
         private List<Acordo> acordos;
         private List<Processo> processos;
 
+        public string Nome { get { return nome; } set { nome = value; } }
+        public string Box { get { return box; } set { box = value; } }
+        public int Numero { get { return numero; } set { numero = value; } }
+
+        public List<Cota> Cotas { get { return cotas; } }
+
+        public List<Acordo> Acordos { get { return acordos; } }
+
         public Apartamento(int numero)
         {
-            nome = " "; this.box = -1; this.numero = numero;
+            nome = " "; this.box = ""; this.numero = numero;
             cotas = new List<Cota>(); acordos = new List<Acordo>(); processos = new List<Processo>();
         }
 
@@ -25,7 +34,7 @@ namespace Escritorio_v2
 
         public void setNome(String nome) { this.nome = nome; }
 
-        public void setBox(int box) { this.box = box; }
+        public void setBox(string box) { this.box = box; }
 
         /******************************COTAS*****************************************************/
 
@@ -103,10 +112,14 @@ namespace Escritorio_v2
         /*******************************************************************************************/
 
 
-        public String toString()
+        public override String ToString()
         {
-            if (box != -1) return "Apartamento " + numero + " - Box " + box + " :\n" + "NOME : " + nome + "\nCOTAS :\n" + cotas + "\nACORDOS :\n" + acordos + "\nPROCESSOS :\n" + processos;
-            else return "Apartamento " + numero + " :\n" + "NOME : " + nome + "\nCOTAS :\n" + cotas + "\nACORDOS :\n" + acordos + "\nPROCESSOS :\n" + processos;
+            return "Apartamento " + numero;
+        }
+
+        public string toStringEspecifico()
+        {
+            return "Apartamento " + numero + " :\n" + "NOME : " + nome + "\nCOTAS :\n" + cotas + "\nACORDOS :\n" + acordos + "\nPROCESSOS :\n" + processos;
 
         }
 

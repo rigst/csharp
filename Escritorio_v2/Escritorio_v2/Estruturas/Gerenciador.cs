@@ -28,7 +28,16 @@ namespace Escritorio_v2
             c1.addBloco(b1);
             c1.addBloco(b2);
             c2.addBloco(b3);
-
+            Apartamento ap1 = new Apartamento(101);
+            Apartamento ap2 = new Apartamento(102);
+            Apartamento ap3 = new Apartamento(103);
+            b1.addApartamento(ap1);
+            b2.addApartamento(ap2);
+            b2.addApartamento(ap3);
+            ap1.Nome = "Maria francisca";
+            ap2.Nome = "Jose carlos";
+            ap1.Box = "02";
+            ap2.addCota("Maria", 1000, 500, new Data("12/11/97"), new Data("27/01/97"), " ");
         }
         public void addCondominio(String nome)
         {

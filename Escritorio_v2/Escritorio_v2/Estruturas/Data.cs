@@ -32,10 +32,17 @@ namespace Escritorio_v2
         public int getMes() { return mes; }
         public int getAno() { return ano; }
 
-        public String toString()
+        public override string ToString()
         {
-            if (dia != 0) return dia + "/" + mes + "/" + ano;
-            else return mes + "/" + ano;
+            string strDia = "", strMes = "", strAno = "";
+            if (dia < 10) strDia = "0";
+            if (mes < 10) strMes = "0";
+            strDia += "" + dia;
+            strMes += "" + mes;
+            strAno = "" + ano;
+
+            if (dia != 0) return strDia + "/" + strMes + "/" + strAno;
+            else return strMes + "/" + strAno;
         }
 
         public bool after(Data d)

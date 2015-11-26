@@ -28,6 +28,7 @@ namespace Escritorio_v2
         {
             this.InitializeComponent();
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
+            this.ViewModel = new BlocoApPageViewModel();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -35,10 +36,48 @@ namespace Escritorio_v2
             base.OnNavigatedTo(e);
             if (e.Parameter != null)
             {
-               /* App minhaApp = (App)App.Current;
-                Condominio cond = minhaApp.Gerenciador.getCondominio(((Condominio)e.Parameter).Nome);
-                Blocos = cond.Blocos;*/
+                string nome = (string)e.Parameter;
+                App minhaApp = (App)App.Current;
+                Condominio cond = (from c in minhaApp.Gerenciador.Condominios
+                                    where c.Nome == nome
+                                    select c).FirstOrDefault();
+                List<Bloco> blocos = cond.Blocos;
+                this.ViewModel.Blocos = blocos;
+                if(blocos.Count != 0)
+                {
+                    Bloco b = blocos.First<Bloco>();
+                    List<Apartamento> listAp = b.Apartamentos;
+                    this.ViewModel.Apartamentos = listAp;
+
+                    if(listAp.Count != 0)
+                    {
+                        Apartamento ap = listAp.First<Apartamento>();
+                        this.ViewModel.ApAtual = ap;
+                    }
+                }
+                
             }
+        }
+
+        private void BlocosListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            App minhaApp = (App)App.Current;
+            Bloco bloco = (Bloco)e.ClickedItem;
+            List<Apartamento> listAp = bloco.Apartamentos;
+            this.ViewModel.Apartamentos = listAp;
+
+            Apartamento ap = null;
+            if (listAp.Count != 0)
+            {
+                ap = listAp.First<Apartamento>();
+            }
+            this.ViewModel.ApAtual = ap;
+        }
+
+        private void ApListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Apartamento ap = (Apartamento)e.ClickedItem;
+            this.ViewModel.ApAtual = ap;
         }
     }
 }

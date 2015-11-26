@@ -10,6 +10,7 @@ namespace Escritorio_v2
     {
         private int numero;
         private List<Apartamento> apartamentos;
+        public List<Apartamento> Apartamentos { get { return apartamentos; } }
 
         public Bloco(int numero)
         {

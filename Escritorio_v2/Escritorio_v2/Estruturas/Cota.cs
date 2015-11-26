@@ -19,10 +19,10 @@ namespace Escritorio_v2
 
         public Data getDataVencimento() { return dataVencimento; }
 
-        public String toString()
+        public override string ToString()
         {
-            return "\tData Vencimento: " + dataVencimento +
-                    "\tValor Pago : " + valPago + "\tData Pagamento : " + dataPagamento +
+            return "Data Vencimento: " + dataVencimento +
+                    "\tValor Pago : R$" + valPago + ",00" + "\tData Pagamento : " + dataPagamento +
                         "\tObservação : " + obs;
         }
     }

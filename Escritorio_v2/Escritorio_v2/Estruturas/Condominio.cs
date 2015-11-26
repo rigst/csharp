@@ -16,9 +16,9 @@ namespace Escritorio_v2
         {
             get; set;
         }
-        public Condominio(String nome) : base()
+        public Condominio(string nome) : base()
         {
-            nome = nome;
+            Nome = nome;
             blocos = new List<Bloco>();
         }
 
