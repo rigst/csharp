@@ -6,38 +6,212 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    <Page.Resources>
+        <Style x:Key="AppBarButtonStyle1" TargetType="AppBarButton">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseHighBrush}"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="Width" Value="68"/>
+            <Setter Property="UseSystemFocusVisuals" Value="True"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="AppBarButton">
+                        <Grid x:Name="Root" Background="{TemplateBinding Background}" MaxWidth="{TemplateBinding MaxWidth}" MinWidth="{TemplateBinding MinWidth}">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="ApplicationViewStates">
+                                    <VisualState x:Name="FullSize"/>
+                                    <VisualState x:Name="Compact"/>
+                                    <VisualState x:Name="Overflow"/>
+                                    <VisualState x:Name="OverflowWithToggleButtons"/>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal">
+                                        <Storyboard>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="OverflowTextLabel"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="PointerOver">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="Root">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightListLowBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="Content">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightAltBaseHighBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="OverflowTextLabel"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="Root">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightListMediumBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="Content">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightAltBaseHighBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <PointerDownThemeAnimation Storyboard.TargetName="OverflowTextLabel"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="Content">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlDisabledBaseLowBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <ContentPresenter x:Name="Content" AutomationProperties.AccessibilityView="Raw" Content="{TemplateBinding Icon}" Foreground="{TemplateBinding Foreground}" HorizontalAlignment="Center" Height="20" Margin="0" HorizontalContentAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="AppBarButtonStyle2" TargetType="AppBarButton">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseHighBrush}"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="Width" Value="68"/>
+            <Setter Property="UseSystemFocusVisuals" Value="True"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="AppBarButton">
+                        <Grid x:Name="Root" Background="{TemplateBinding Background}" MaxWidth="{TemplateBinding MaxWidth}" MinWidth="{TemplateBinding MinWidth}">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="ApplicationViewStates">
+                                    <VisualState x:Name="FullSize"/>
+                                    <VisualState x:Name="Compact">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="TextLabel">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Overflow">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="ContentRoot">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="OverflowTextLabel">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="OverflowWithToggleButtons">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="ContentRoot">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="OverflowTextLabel">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" Storyboard.TargetName="OverflowTextLabel">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="38,11,0,13"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal">
+                                        <Storyboard>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="OverflowTextLabel"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="PointerOver">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="Root">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightListLowBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="Content">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightAltBaseHighBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="TextLabel">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightAltBaseHighBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="OverflowTextLabel">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightAltBaseHighBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="OverflowTextLabel"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="Root">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightListMediumBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="Content">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightAltBaseHighBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="TextLabel">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightAltBaseHighBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="OverflowTextLabel">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightAltBaseHighBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <PointerDownThemeAnimation Storyboard.TargetName="OverflowTextLabel"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="Content">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlDisabledBaseLowBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="TextLabel">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlDisabledBaseLowBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="OverflowTextLabel">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlDisabledBaseLowBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <StackPanel x:Name="ContentRoot" MinHeight="{ThemeResource AppBarThemeCompactHeight}">
+                                <ContentPresenter x:Name="Content" AutomationProperties.AccessibilityView="Raw" Content="{TemplateBinding Icon}" Foreground="{TemplateBinding Foreground}" HorizontalAlignment="Stretch" Height="55" Margin="0"/>
+                                <TextBlock x:Name="TextLabel" Foreground="{TemplateBinding Foreground}" FontSize="12" FontFamily="{TemplateBinding FontFamily}" Margin="0,0,0,6" TextAlignment="Center" TextWrapping="Wrap" Text="{TemplateBinding Label}" d:IsHidden="True"/>
+                            </StackPanel>
+                            <TextBlock x:Name="OverflowTextLabel" Foreground="{TemplateBinding Foreground}" FontSize="15" FontFamily="{TemplateBinding FontFamily}" HorizontalAlignment="Stretch" Margin="12,11,0,13" TextAlignment="Left" TextWrapping="NoWrap" Text="{TemplateBinding Label}" TextTrimming="Clip" Visibility="Collapsed" VerticalAlignment="Center"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
     <Page.TopAppBar>
-        <CommandBar>
+        <CommandBar Background="#FFCBCBCB" d:IsHidden="True">
             <CommandBar.SecondaryCommands>
-                <AppBarButton x:Name="btSalvar" Label="Salvar" Icon="Save"/>
-                <AppBarButton x:Name="btSalvarLocal" Label="Salvar Como" Icon="SaveLocal"/>
-                <AppBarButton x:Name="btCarregar" Label="Carregar" Icon="OpenLocal"/>
+                <AppBarButton x:Name="btSaveAs" Label="Salvar Como" Icon="SaveLocal"/>
+                <AppBarButton x:Name="btLoadFrom" Label="Carregar Arquivo" Icon="OpenLocal"/>
             </CommandBar.SecondaryCommands>
             <CommandBar.Content>
                 <Grid/>
             </CommandBar.Content>
-            <AppBarButton x:Name="btAdicionar" Icon="Add" Label="Adicionar"/>
-            <AppBarButton x:Name="btDeletar" Icon="Delete" Label="Deletar"/>
+            <AppBarButton x:Name="btSave" Icon="Save" Label="Salvar"/>
+            <AppBarButton x:Name="btLoad" Icon="OpenFile" Label="Carregar"/>
         </CommandBar>
     </Page.TopAppBar>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid x:Name="gridMain" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="161*"/>
-            <ColumnDefinition Width="253*"/>
-            <ColumnDefinition Width="866*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
-
-        <ListView x:Name="BlocosListView" HorizontalAlignment="Center" Height="530" Margin="24,112,18,78" VerticalAlignment="Center" Width="119" Background="#FFE6E6E6" ItemsSource="{x:Bind ViewModel.Blocos, Mode=OneWay}" IsItemClickEnabled="True" ItemClick="BlocosListView_ItemClick" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
-        <Grid Grid.Column="2" Margin="24,62,20,26" Background="#FFE6E6E6">
+        <Grid x:Name="gridDetalhes" Grid.Column="2" Background="#FFE6E6E6">
             <Grid.RowDefinitions>
-                <RowDefinition Height="21*"/>
-                <RowDefinition Height="16*"/>
-                <RowDefinition Height="121*"/>
+                <RowDefinition Height="24*"/>
+                <RowDefinition Height="23*"/>
+                <RowDefinition Height="277*"/>
             </Grid.RowDefinitions>
-            <TextBlock x:Name="ApNumero" HorizontalAlignment="Center" Margin="144,12,144,11" TextWrapping="Wrap" VerticalAlignment="Center" Height="61" Width="180" Style="{StaticResource HeaderTextBlockStyle}" FontSize="40"  Text="{x:Bind ViewModel.ApAtual.Numero, Mode=OneWay}" TextAlignment="Center"/>
-            <TextBlock x:Name="Ap_Box" HorizontalAlignment="Right" Margin="0,0,8,0" TextWrapping="Wrap" VerticalAlignment="Center" Height="43" Width="64" Style="{StaticResource SubheaderTextBlockStyle}" FontSize="26.667" TextAlignment="Center" Text="{x:Bind ViewModel.ApAtual.Box, Mode=OneWay}"/>
-            <TextBlock x:Name="Ap_Nome" HorizontalAlignment="Left" Margin="16,14,0,13" TextWrapping="Wrap" VerticalAlignment="Center" Height="37" Width="426" Style="{StaticResource HeaderTextBlockStyle}" FontSize="26.667" Grid.Row="1" Text="{x:Bind ViewModel.ApAtual.Nome, Mode=OneWay}"/>
+            <TextBlock x:Name="ApNumero" HorizontalAlignment="Center" Margin="287,-13,286,0" TextWrapping="Wrap" VerticalAlignment="Center" Height="61" Width="180" Style="{StaticResource HeaderTextBlockStyle}" FontSize="40"  Text="{x:Bind ViewModel.ApAtual.Numero, Mode=OneWay}" TextAlignment="Center"/>
+            <TextBlock x:Name="Ap_Box" HorizontalAlignment="Right" Margin="0,3,8,2" TextWrapping="Wrap" VerticalAlignment="Center" Height="43" Width="64" Style="{StaticResource SubheaderTextBlockStyle}" FontSize="26.667" TextAlignment="Center" Text="{x:Bind ViewModel.ApAtual.Box, Mode=OneWay}"/>
+            <TextBlock x:Name="Ap_Nome" HorizontalAlignment="Left" Margin="16,9,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Height="37" Width="426" Style="{StaticResource HeaderTextBlockStyle}" FontSize="26.667" Grid.Row="1" Text="{x:Bind ViewModel.ApAtual.Nome, Mode=OneWay}"/>
             <Grid Grid.Row="2">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -47,10 +221,173 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <ListView x:Name="CotasListView" Background="#FFCBCBCB" ItemsSource="{x:Bind ViewModel.ApAtual.Cotas, Mode=OneWay}" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
-                <ListView x:Name="AcordosListView" Background="#FFF1F1F1" ItemsSource="{x:Bind ViewModel.ApAtual.Acordos, Mode=OneWay}" ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.Row="1"/>
+                <Grid x:Name="gridProcessos" Background="#FFCBCBCB" Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="32*"/>
+                        <RowDefinition Height="31*"/>
+                        <RowDefinition Height="76*"/>
+                        <RowDefinition Height="45*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="3" Grid.ColumnSpan="3">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0*"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="10*"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <AppBarButton x:Name="btEditar" Icon="Edit" Label="Renomear" Background="{x:Null}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,1" Style="{StaticResource AppBarButtonStyle2}" Width="Auto" Grid.RowSpan="2" Grid.Column="2">
+                            <AppBarButton x:Name="btRename1_Copy3" Icon="Edit" Label="Renomear" Background="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource AppBarButtonStyle2}" Height="48" Width="48"/>
+                        </AppBarButton>
+                        <AppBarButton x:Name="btDeletar" Icon="Delete" Label="Renomear" Background="{x:Null}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Style="{StaticResource AppBarButtonStyle2}" Width="Auto" Grid.RowSpan="2" Grid.Column="3">
+                            <AppBarButton x:Name="btRename1_Copy5" Icon="Edit" Label="Renomear" Background="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource AppBarButtonStyle2}" Height="48" Width="48"/>
+                        </AppBarButton>
+                        <AppBarButton x:Name="btAdicionar" Icon="Add" Label="Renomear" Background="{x:Null}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,0,0,1" Style="{StaticResource AppBarButtonStyle2}" Width="Auto" Grid.RowSpan="2" Grid.Column="1">
+                            <AppBarButton x:Name="btRename1_Copy1" Icon="Edit" Label="Renomear" Background="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource AppBarButtonStyle2}" Height="48" Width="48"/>
+                        </AppBarButton>
+                    </Grid>
+                    <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Último Movimento" TextAlignment="Center" FontSize="17.333" Grid.Row="1"/>
+                    <TextBlock x:Name="textBlock_Copy" TextWrapping="Wrap" Text="Número do Processo" TextAlignment="Center" FontSize="17.333" Grid.Column="1" Grid.Row="1"/>
+                    <TextBlock x:Name="textBlock_Copy1" TextWrapping="Wrap" Text="Réu" TextAlignment="Center" FontSize="17.333" Grid.Column="2" Grid.Row="1"/>
+                    <TextBlock x:Name="textBlock_Copy2" TextWrapping="Wrap" Text="Processos" TextAlignment="Center" FontSize="17.333" Grid.ColumnSpan="3" FontStyle="Italic" Foreground="#FF3F3F3F"/>
+                    <ListView x:Name="ProcessosListView" Background="#FFF0F0F0" ItemsSource="{x:Bind ViewModel.ApAtual.Processos, Mode=OneWay}" ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3" Grid.Row="2"/>
+                </Grid>
+                <Grid x:Name="gridCotas" Background="#FFCBCBCB">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="32*"/>
+                        <RowDefinition Height="31*"/>
+                        <RowDefinition Height="76*"/>
+                        <RowDefinition Height="45*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="3" Grid.ColumnSpan="4">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0*"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="10*"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <AppBarButton x:Name="btEditar1" Icon="Edit" Label="Renomear" Background="{x:Null}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,1" Style="{StaticResource AppBarButtonStyle2}" Width="Auto" Grid.RowSpan="2" Grid.Column="2">
+                            <AppBarButton x:Name="btRename1_Copy2" Icon="Edit" Label="Renomear" Background="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource AppBarButtonStyle2}" Height="48" Width="48"/>
+                        </AppBarButton>
+                        <AppBarButton x:Name="btDeletar1" Icon="Delete" Label="Renomear" Background="{x:Null}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Style="{StaticResource AppBarButtonStyle2}" Width="Auto" Grid.RowSpan="2" Grid.Column="3">
+                            <AppBarButton x:Name="btRename1_Copy4" Icon="Edit" Label="Renomear" Background="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource AppBarButtonStyle2}" Height="48" Width="48"/>
+                        </AppBarButton>
+                        <AppBarButton x:Name="btAdicionar1" Icon="Add" Label="Renomear" Background="{x:Null}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,0,0,1" Style="{StaticResource AppBarButtonStyle2}" Width="Auto" Grid.RowSpan="2" Grid.Column="1">
+                            <AppBarButton x:Name="btRename1_Copy6" Icon="Edit" Label="Renomear" Background="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource AppBarButtonStyle2}" Height="48" Width="48"/>
+                        </AppBarButton>
+                    </Grid>
+                    <TextBlock x:Name="textBlock1" TextWrapping="Wrap" TextAlignment="Center" FontSize="17.333" Grid.Row="1">
+                    	<Run Text="Data de "/>
+                    	<Run Text="Vencimento"/>
+                    </TextBlock>
+                    <TextBlock x:Name="textBlock_Copy3" TextWrapping="Wrap" TextAlignment="Center" FontSize="17.333" Grid.Column="1" Grid.Row="1">
+                    	<Run Text="Valor "/>
+                    	<Run Text="Pago"/>
+                    </TextBlock>
+                    <TextBlock x:Name="textBlock_Copy4" TextWrapping="Wrap" Text="Data de Pagamento" TextAlignment="Center" FontSize="17.333" Grid.Column="2" Grid.Row="1"/>
+                    <TextBlock x:Name="textBlock_Copy5" TextWrapping="Wrap" Text="Cotas" TextAlignment="Center" FontSize="17.333" Grid.ColumnSpan="4" FontStyle="Italic" Foreground="#FF3F3F3F"/>
+                    <ListView x:Name="CotasListView" Background="#FFF0F0F0" ItemsSource="{x:Bind ViewModel.ApAtual.Cotas, Mode=OneWay}" ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="4" Grid.Row="2"/>
+                    <TextBlock x:Name="textBlock_Copy9" TextWrapping="Wrap" Text="Observação" TextAlignment="Center" FontSize="17.333" Grid.Column="3" Grid.Row="1"/>
+                </Grid>
+                <Grid x:Name="gridProcessos_Copy" Background="#FFAAAAAA" Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="32*"/>
+                        <RowDefinition Height="31*"/>
+                        <RowDefinition Height="76*"/>
+                        <RowDefinition Height="45*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="3" Grid.ColumnSpan="4">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0*"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="10*"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <AppBarButton x:Name="btEditar2" Icon="Edit" Label="Renomear" Background="{x:Null}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,1" Style="{StaticResource AppBarButtonStyle2}" Width="Auto" Grid.RowSpan="2" Grid.Column="2">
+                            <AppBarButton x:Name="btRename1_Copy7" Icon="Edit" Label="Renomear" Background="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource AppBarButtonStyle2}" Height="48" Width="48"/>
+                        </AppBarButton>
+                        <AppBarButton x:Name="btDeletar2" Icon="Delete" Label="Renomear" Background="{x:Null}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Style="{StaticResource AppBarButtonStyle2}" Width="Auto" Grid.RowSpan="2" Grid.Column="3">
+                            <AppBarButton x:Name="btRename1_Copy8" Icon="Edit" Label="Renomear" Background="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource AppBarButtonStyle2}" Height="48" Width="48"/>
+                        </AppBarButton>
+                        <AppBarButton x:Name="btAdicionar2" Icon="Add" Label="Renomear" Background="{x:Null}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,0,0,1" Style="{StaticResource AppBarButtonStyle2}" Width="Auto" Grid.RowSpan="2" Grid.Column="1">
+                            <AppBarButton x:Name="btRename1_Copy9" Icon="Edit" Label="Renomear" Background="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource AppBarButtonStyle2}" Height="48" Width="48"/>
+                        </AppBarButton>
+                    </Grid>
+                    <TextBlock x:Name="textBlock2" TextWrapping="Wrap" TextAlignment="Center" FontSize="17.333" Grid.Row="1" >
+                    	<Run Text="Data de "/>
+                    	<Run Text="Assinatura"/>
+                    </TextBlock>
+                    <TextBlock x:Name="textBlock_Copy6" TextWrapping="Wrap" Text="Processo" TextAlignment="Center" FontSize="17.333" Grid.Column="1" Grid.Row="1"/>
+                    <TextBlock x:Name="textBlock_Copy7" TextWrapping="Wrap" Text="Data de Início" TextAlignment="Center" FontSize="17.333" Grid.Column="2" Grid.Row="1"/>
+                    <TextBlock x:Name="textBlock_Copy8" TextWrapping="Wrap" Text="Acordos" TextAlignment="Center" FontSize="17.333" Grid.ColumnSpan="4" FontStyle="Italic" Foreground="#FF3F3F3F"/>
+                    <ListView x:Name="AcordosListView" Background="#FFF0F0F0" ItemsSource="{x:Bind ViewModel.ApAtual.Acordos, Mode=OneWay}" ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="4" Grid.Row="2" AllowDrop="True" CanDrag="True"/>
+                    <TextBlock x:Name="textBlock_Copy10" TextWrapping="Wrap" TextAlignment="Center" FontSize="17.333" Grid.Column="3" Grid.Row="1" Text="Data de Término"/>
+                </Grid>
             </Grid>
         </Grid>
-        <ListView x:Name="ApListView" HorizontalAlignment="Center" Height="525" Margin="21,114,27,81" VerticalAlignment="Center" Width="205" Background="#FFE6E6E6" ItemsSource="{x:Bind ViewModel.Apartamentos, Mode=OneWay}" IsItemClickEnabled="True" ItemClick="ApListView_ItemClick" ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.Column="1"/>
+        <Grid x:Name="gridBlocos" HorizontalAlignment="Center" Height="552" VerticalAlignment="Center" Width="215" Margin="0,100,0,0" Background="#FFCFCFCF">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="497*"/>
+                <RowDefinition Height="55*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="15*"/>
+                    <ColumnDefinition Width="58*"/>
+                    <ColumnDefinition Width="72*"/>
+                    <ColumnDefinition Width="71*"/>
+                </Grid.ColumnDefinitions>
+                <AppBarButton x:Name="btRename" HorizontalAlignment="Center" Icon="Edit" Label="Renomear" VerticalAlignment="Center" Background="{x:Null}" Grid.Column="2"/>
+                <AppBarButton x:Name="btNew" Icon="Add" Label="Novo" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <AppBarButton x:Name="btDelete" Icon="Delete" Label="Deletar" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+            <ListView x:Name="BlocosListView" Background="#FFE6E6E6" ItemsSource="{x:Bind ViewModel.Blocos, Mode=OneWay}" IsItemClickEnabled="True" ItemClick="BlocosListView_ItemClick" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
+        </Grid>
+        <Grid x:Name="gridApartamentos" HorizontalAlignment="Center" Height="552" VerticalAlignment="Center" Width="215" Margin="0,100,0,0" Background="#FFCFCFCF" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="497*"/>
+                <RowDefinition Height="55*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <AppBarButton x:Name="btRename1" Icon="Edit" Label="Renomear" Background="{x:Null}" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <AppBarButton x:Name="btNew1" Icon="Add" Label="Novo" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <AppBarButton x:Name="btDelete1" Icon="Delete" Label="Deletar" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+            <ListView x:Name="ApListView" Background="#FFE6E6E6" ItemsSource="{x:Bind ViewModel.Apartamentos, Mode=OneWay}" IsItemClickEnabled="True" ItemClick="ApListView_ItemClick" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
+        </Grid>
+        <TextBlock x:Name="NomeCondominioTextBlock" HorizontalAlignment="Center" Margin="11,68,30,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="61" Width="471" Style="{StaticResource HeaderTextBlockStyle}" Text="{x:Bind ViewModel.NomeCondominio, Mode=OneWay}" FontSize="40"/>
     </Grid>
 </Page>

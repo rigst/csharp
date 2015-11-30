@@ -9,20 +9,39 @@
     <Page.TopAppBar>
         <CommandBar>
             <CommandBar.SecondaryCommands>
-                <AppBarButton x:Name="btSalvar" Label="Salvar" Icon="Save"/>
-                <AppBarButton x:Name="btSalvarLocal" Label="Salvar Como" Icon="SaveLocal"/>
-                <AppBarButton x:Name="btCarregarLocal" Label="Carregar Arquivo" Icon="OpenLocal"/>
+                <AppBarButton x:Name="btSaveAs" Label="Salvar Como" Icon="SaveLocal"/>
+                <AppBarButton x:Name="btLoadFrom" Label="Carregar Arquivo" Icon="OpenLocal"/>
             </CommandBar.SecondaryCommands>
             <CommandBar.Content>
                 <Grid/>
             </CommandBar.Content>
-            <AppBarButton x:Name="btAdiciona" Icon="Add" Label="Adicionar"/>
-            <AppBarButton x:Name="btDeleta" Label="Remover" Icon="Delete"/>
+            <AppBarButton x:Name="btSave" Icon="Save" Label="Salvar"/>
+            <AppBarButton x:Name="btLoad" Icon="OpenFile" Label="Carregar"/>
         </CommandBar>
     </Page.TopAppBar>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <ListView x:Name="CondominiosListView" HorizontalAlignment="Center" Height="391" Margin="0" VerticalAlignment="Center" Width="634" Background="#FFE6E6E6" ItemsSource="{Binding Condominios}" CanReorderItems="True" CanDragItems="True" IsItemClickEnabled="True" ItemClick="listView_ItemClick" SelectionMode="None" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
+        <Grid HorizontalAlignment="Center" Height="466" VerticalAlignment="Center" Width="584" Margin="0" Background="#FFCFCFCF">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="405*"/>
+                <RowDefinition Height="61*"/>
+            </Grid.RowDefinitions>
+            <ListView x:Name="CondominiosListView" Background="#FFE6E6E6" ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding Condominios}" AllowDrop="True" CanDrag="True"/>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <AppBarButton x:Name="btRename" HorizontalAlignment="Center" Icon="Edit" Label="Renomear" Margin="0" VerticalAlignment="Center" Grid.Column="1" Background="{x:Null}"/>
+                <AppBarButton x:Name="btNew" HorizontalAlignment="Center" Icon="Add" Label="Novo" Margin="0" VerticalAlignment="Center"/>
+                <AppBarButton x:Name="btDelete" HorizontalAlignment="Center" Icon="Delete" Label="Deletar" Margin="0" VerticalAlignment="Center" Grid.Column="2"/>
+                <AppBarButton x:Name="btSelect" HorizontalAlignment="Center" Icon="Accept" Label="Selecionar" Margin="15,0,14,0" VerticalAlignment="Center" Grid.Column="5" Click="btSelect_Click" Height="61"/>
+            </Grid>
+        </Grid>
 
     </Grid>
 </Page>

@@ -19,11 +19,27 @@ namespace Escritorio_v2
 
         public Data getDataVencimento() { return dataVencimento; }
 
+        public static string espacos(int n)
+        {
+            string s = "";
+            for(int i=0; i< n; i++)
+            {
+                s += "\t";
+            }
+            return s;
+        }
+
         public override string ToString()
         {
-            return "Data Vencimento: " + dataVencimento +
-                    "\tValor Pago : R$" + valPago + ",00" + "\tData Pagamento : " + dataPagamento +
-                        "\tObservação : " + obs;
+            string msg = espacos(1) + "" + dataVencimento;
+            msg += espacos(2);
+            msg += "\tR$" + valPago + ",00";
+            msg += espacos(2);
+            msg += "" + dataPagamento;
+            msg += espacos(2);
+            msg += "" + obs;
+
+            return msg;
         }
     }
 

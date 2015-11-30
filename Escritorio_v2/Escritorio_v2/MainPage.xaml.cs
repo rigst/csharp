@@ -31,10 +31,14 @@ namespace Escritorio_v2
             this.DataContext = minhaApp.Gerenciador;
         }
 
-        private void listView_ItemClick(object sender, ItemClickEventArgs e)
+        private void btSelect_Click(object sender, RoutedEventArgs e)
         {
-            string s = ((Condominio)e.ClickedItem).Nome;
-            this.Frame.Navigate(typeof(BlocoApPage),((Condominio)e.ClickedItem).Nome);
+            Condominio cond = ((Condominio)CondominiosListView.SelectedItem);
+            if(cond != null)
+            {
+                string s = cond.Nome;
+                this.Frame.Navigate(typeof(BlocoApPage), s);
+            }
         }
     }
 }

@@ -14,7 +14,7 @@ namespace Escritorio_v2
         public Gerenciador() {
             condominios = new List<Condominio>();
             
-            Condominio c1 = new Condominio("COND 1");
+            Condominio c1 = new Condominio("Águas Claras");
             Condominio c2 = new Condominio("COND 2");
             Condominio c3 = new Condominio("COND 3");
             Condominio c4 = new Condominio("COND 4");
@@ -37,7 +37,15 @@ namespace Escritorio_v2
             ap1.Nome = "Maria francisca";
             ap2.Nome = "Jose carlos";
             ap1.Box = "02";
-            ap2.addCota("Maria", 1000, 500, new Data("12/11/97"), new Data("27/01/97"), " ");
+            ap2.addCota("Maria", 1000, 500, new Data("12/11/97"), new Data("27/01/97"), "observacao");
+            ap2.addCota("Silvia", 200, 100, new Data("02/11/97"), new Data("27/11/97"), "observacao");
+            ap2.addCota("Silvia", 1000, 100, new Data("02/11/97"), new Data("27/11/97"), "observacao");
+            ap2.addAcordo(new Acordo("Catia Jose", "1124/568-4", "IBM", new Data("13/11/87"), new Data("11/11/87"), new Data("11/12/87"), 1200, 200, 4));
+            ap2.addAcordo(new Acordo("Maria Oliveira", "1124/568-4", "IBM", new Data("13/11/87"), new Data("11/11/87"), new Data("11/12/87"), 1200, 200, 4));
+            ap2.addAcordo(new Acordo("Claudia Oliveira", "1124/568-4", "IBM", new Data("13/11/87"), new Data("11/11/87"), new Data("11/12/87"), 1200, 200, 4));
+            ap2.addProcesso("Simão", "Dinheiro", 1136589, 2000, new Data("13/11"), new Data("13/5/69"), new Data("05/14/05"));
+            ap2.addProcesso("Carlos", "Dinheiro", 13256, 2000, new Data("13/11"), new Data("13/5/69"), new Data("05/14/05"));
+            ap2.addProcesso("Roberto", "Dinheiro", 89798, 2000, new Data("13/11"), new Data("13/5/69"), new Data("05/14/05"));
         }
         public void addCondominio(String nome)
         {

@@ -36,29 +36,45 @@ namespace Escritorio_v2
             base.OnNavigatedTo(e);
             if (e.Parameter != null)
             {
+                //ENCONTRA O CONDOMINIO
                 string nome = (string)e.Parameter;
                 App minhaApp = (App)App.Current;
                 Condominio cond = (from c in minhaApp.Gerenciador.Condominios
-                                    where c.Nome == nome
-                                    select c).FirstOrDefault();
+                                   where c.Nome == nome
+                                   select c).FirstOrDefault();
+                this.ViewModel.NomeCondominio = cond.Nome;
+                //ATUALIZA OS BLOCOS
+                UpdateBlocos(cond);
+                
+
+               
+            }
+
+        }
+        private void UpdateBlocos(Condominio cond)
+        {
+            if (cond != null)
+            {
                 List<Bloco> blocos = cond.Blocos;
-                this.ViewModel.Blocos = blocos;
+                ViewModel.Blocos = blocos;
+                //ATUALIZA APARTAMENTOS
                 if(blocos.Count != 0)
                 {
-                    Bloco b = blocos.First<Bloco>();
-                    List<Apartamento> listAp = b.Apartamentos;
-                    this.ViewModel.Apartamentos = listAp;
-
-                    if(listAp.Count != 0)
-                    {
-                        Apartamento ap = listAp.First<Apartamento>();
-                        this.ViewModel.ApAtual = ap;
-                    }
+                    UpdateApartamentos(blocos.First<Bloco>());
                 }
-                
             }
         }
 
+        private void UpdateApartamentos(Bloco b)
+        {
+            List<Apartamento> listAp = b.Apartamentos;
+            if (listAp.Count != 0)
+            {
+                Apartamento ap = listAp.First<Apartamento>();
+                this.ViewModel.ApAtual = ap;
+            }
+        }
+        
         private void BlocosListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             App minhaApp = (App)App.Current;
@@ -79,5 +95,8 @@ namespace Escritorio_v2
             Apartamento ap = (Apartamento)e.ClickedItem;
             this.ViewModel.ApAtual = ap;
         }
+        
     }
 }
+
+     

@@ -24,6 +24,8 @@ namespace Escritorio_v2
 
         public List<Acordo> Acordos { get { return acordos; } }
 
+        public List<Processo> Processos { get { return processos; } }
+
         public Apartamento(int numero)
         {
             nome = " "; this.box = ""; this.numero = numero;

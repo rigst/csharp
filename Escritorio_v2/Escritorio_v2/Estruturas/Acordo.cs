@@ -8,15 +8,75 @@ namespace Escritorio_v2
 {
     public class Acordo
     {
-        private String devedor, formaAtualizacao;
-        private String processo;
+        private string devedor, formaAtualizacao;
+        private string processo;
         private Data dataAssinatura, inicio, fim;
         private double valorTotal, valorParcela;
         private int numParcelas;
         private List<Data> debitosInclusos;
         private List<Item> tabela;
 
-        class Item
+        public string Devedor
+        {
+            get { return devedor; }
+            set { devedor = value; }
+        }
+
+        public string FormaAtualizacao
+        {
+            get { return formaAtualizacao; }
+            set { formaAtualizacao = value; }
+        }
+
+        public string Processo
+        {
+            get { return processo; }
+            set { processo = value; }
+        }
+
+        public Data DataAssinatura
+        {
+            get { return dataAssinatura; }
+            set { dataAssinatura = value; }
+        }
+
+        public Data Inicio
+        {
+            get { return inicio; }
+            set { inicio = value; }
+        }
+
+        public Data Fim
+        {
+            get { return fim; }
+            set { fim = value; }
+        }
+
+        public double ValorTotal
+        {
+            get { return valorTotal; }
+            set { valorTotal = value; }
+        }
+        
+        public int NumParcelas
+        {
+            get { return numParcelas; }
+            set { numParcelas = value; }
+        }
+        
+        public List<Data> DebitosInclusos
+        {
+            get { return debitosInclusos; }
+            set { debitosInclusos = value; }
+        }
+
+        public List<Item> Tabela
+        {
+            get { return tabela; }
+            set { tabela = value; }
+        }
+        
+        public class Item
         {
             private String parcela;
             private double valorOriginal, valorPago;
@@ -57,6 +117,11 @@ namespace Escritorio_v2
         public Data getDataAssinatura() { return dataAssinatura; }
 
         public String getDevedor() { return devedor; }
+
+        public override string ToString()
+        {
+            return Cota.espacos(1) + dataAssinatura + Cota.espacos(3) + processo + Cota.espacos(2) + inicio + Cota.espacos(2) + fim;
+        }
 
         public String toString()
         {

@@ -9,10 +9,13 @@ namespace Escritorio_v2.ViewModel
 {
     public class BlocoApPageViewModel : INotifyPropertyChanged
     {
+
+        private string nome = " ";
         private List<Bloco> blocos;
         private List<Apartamento> apartamentos;
         private Apartamento apAtual;
 
+        public string NomeCondominio { get { return nome; } set { nome = "Condomínio " + value; } }
         public List<Bloco> Blocos {
             get
             {
