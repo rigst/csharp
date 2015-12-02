@@ -533,6 +533,7 @@ namespace Escritorio_v2
                 btOk_Click(sender, e);
             }
 
+
         }
     }
 }
