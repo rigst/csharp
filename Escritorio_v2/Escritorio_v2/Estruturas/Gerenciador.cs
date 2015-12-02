@@ -1,16 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Escritorio_v2
 {
-    public class Gerenciador
+    public class Gerenciador : INotifyPropertyChanged
     {
         private List<Condominio> condominios;
 
-        public List<Condominio> Condominios { get { return condominios; } }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public List<Condominio> Condominios { get { return condominios; } set { condominios = value; } }
+
         public Gerenciador() {
             condominios = new List<Condominio>();
             

@@ -21,26 +21,38 @@
     </Page.TopAppBar>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid HorizontalAlignment="Center" Height="466" VerticalAlignment="Center" Width="584" Margin="0" Background="#FFCFCFCF">
+        <Grid HorizontalAlignment="Center" Height="570" Margin="0" VerticalAlignment="Center" Width="625">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="21*"/>
+                <ColumnDefinition Width="4*"/>
+            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="405*"/>
-                <RowDefinition Height="61*"/>
+                <RowDefinition Height="491*"/>
+                <RowDefinition Height="80*"/>
             </Grid.RowDefinitions>
-            <ListView x:Name="CondominiosListView" Background="#FFE6E6E6" ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding Condominios}" AllowDrop="True" CanDrag="True"/>
-            <Grid Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <AppBarButton x:Name="btRename" HorizontalAlignment="Center" Icon="Edit" Label="Renomear" Margin="0" VerticalAlignment="Center" Grid.Column="1" Background="{x:Null}"/>
-                <AppBarButton x:Name="btNew" HorizontalAlignment="Center" Icon="Add" Label="Novo" Margin="0" VerticalAlignment="Center"/>
-                <AppBarButton x:Name="btDelete" HorizontalAlignment="Center" Icon="Delete" Label="Deletar" Margin="0" VerticalAlignment="Center" Grid.Column="2"/>
-                <AppBarButton x:Name="btSelect" HorizontalAlignment="Center" Icon="Accept" Label="Selecionar" Margin="15,0,14,0" VerticalAlignment="Center" Grid.Column="5" Click="btSelect_Click" Height="61"/>
+            <Grid HorizontalAlignment="Center" Height="466" VerticalAlignment="Center" Width="584" Margin="21,12,20,12" Background="#FFCFCFCF" Grid.ColumnSpan="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="405*"/>
+                    <RowDefinition Height="61*"/>
+                </Grid.RowDefinitions>
+                <ListView x:Name="CondominiosListView" Background="#FFE6E6E6" ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{x:Bind Gerenciador.Condominios, Mode=OneTime}" AllowDrop="True" CanDrag="True"/>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <AppBarButton x:Name="btRename" HorizontalAlignment="Center" Icon="Edit" Label="Renomear" Margin="0" VerticalAlignment="Center" Grid.Column="1" Background="{x:Null}" Click="btRename_Click"/>
+                    <AppBarButton x:Name="btNew" HorizontalAlignment="Center" Icon="Add" Label="Novo" Margin="0" VerticalAlignment="Center" Click="btNew_Click"/>
+                    <AppBarButton x:Name="btDelete" HorizontalAlignment="Center" Icon="Delete" Label="Deletar" Margin="0" VerticalAlignment="Center" Grid.Column="2" Click="btDelete_Click"/>
+                    <AppBarButton x:Name="btSelect" HorizontalAlignment="Center" Icon="Accept" Label="Selecionar" Margin="15,0,14,0" VerticalAlignment="Center" Grid.Column="5" Click="btSelect_Click" Height="61"/>
+                </Grid>
             </Grid>
+            <TextBox x:Name="textBox" HorizontalAlignment="Center" Margin="0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="482"/>
+            <AppBarButton x:Name="btOk" HorizontalAlignment="Center" Icon="Forward" Label="Ok" Margin="0" VerticalAlignment="Center" Height="61" Grid.Column="1" Grid.Row="1" Click="btOk_Click"/>
         </Grid>
 
     </Grid>

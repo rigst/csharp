@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Escritorio_v2.ViewModel;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -23,12 +25,17 @@ namespace Escritorio_v2
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private Gerenciador Gerenciador { get; set; }
+        App minhaApp;
+
         public MainPage()
         {
             this.InitializeComponent();
+            textBox.Visibility = Visibility.Collapsed;
+            btOk.Visibility = Visibility.Collapsed;
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
-            App minhaApp = (App)App.Current;
-            this.DataContext = minhaApp.Gerenciador;
+            minhaApp = (App)App.Current;
+            Gerenciador = minhaApp.Gerenciador;
         }
 
         private void btSelect_Click(object sender, RoutedEventArgs e)
@@ -39,6 +46,65 @@ namespace Escritorio_v2
                 string s = cond.Nome;
                 this.Frame.Navigate(typeof(BlocoApPage), s);
             }
+        }
+
+        private void btNew_Click(object sender, RoutedEventArgs e)
+        {
+            List<Condominio> lista = minhaApp.Gerenciador.Condominios;
+            int count = 0;
+
+            while(existeNum(lista,count))
+            {
+                count++;
+            }
+
+            string nome = "\"Novo Condomínio " + count + "\"";
+            Condominio novoCond = new Condominio(nome);
+            minhaApp.Gerenciador.Condominios.Add(novoCond);
+            App.Update(this);
+        }
+
+        private bool existeNum(List<Condominio> lista, int s)
+        {
+            bool existe = false;
+            foreach (var v in lista)
+            {
+                if (v.Nome.Contains("Novo Condomínio " + s)) existe= true;
+            }
+            return existe;
+        }
+
+        private void btDelete_Click(object sender, RoutedEventArgs e)
+        {
+            Condominio cond = ((Condominio)CondominiosListView.SelectedItem);
+            if (cond != null)
+            {
+                List<Condominio> lista = minhaApp.Gerenciador.Condominios;
+                lista.Remove(cond);
+                App.Update(this);
+            }
+        }
+
+        private void btRename_Click(object sender, RoutedEventArgs e)
+        {
+            Condominio cond = ((Condominio)CondominiosListView.SelectedItem);
+            if(cond != null)
+            {
+                textBox.Visibility = Visibility.Visible;
+                btOk.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void btOk_Click(object sender, RoutedEventArgs e)
+        {
+            string s = textBox.Text;
+            Condominio cond = ((Condominio)CondominiosListView.SelectedItem);
+            List<Condominio> lista = minhaApp.Gerenciador.Condominios;
+            foreach(var v in lista)
+            {
+                if (v.Nome.Equals(cond.Nome)) v.Nome = s;
+            }
+            App.Update(this);
         }
     }
 }

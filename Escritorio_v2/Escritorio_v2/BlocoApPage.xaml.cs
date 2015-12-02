@@ -44,10 +44,7 @@ namespace Escritorio_v2
                                    select c).FirstOrDefault();
                 this.ViewModel.NomeCondominio = cond.Nome;
                 //ATUALIZA OS BLOCOS
-                UpdateBlocos(cond);
-                
-
-               
+                UpdateBlocos(cond);               
             }
 
         }

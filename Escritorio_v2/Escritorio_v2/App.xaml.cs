@@ -106,6 +106,8 @@ namespace Escritorio_v2
             deferral.Complete();
         }
 
+        public static void Update(Page p) { p.Frame.Navigate(p.GetType(), ""); }
+
         private void App_BackRequested(object sender, Windows.UI.Core.BackRequestedEventArgs e)
         {
             Frame rootFrame = Window.Current.Content as Frame;
