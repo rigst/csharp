@@ -11,11 +11,13 @@ namespace Escritorio_v2.ViewModel
     {
 
         private string nome = " ";
+        private string original = "";
         private List<Bloco> blocos;
         private List<Apartamento> apartamentos;
         private Apartamento apAtual;
 
-        public string NomeCondominio { get { return nome; } set { nome = "Condomínio " + value; } }
+        public string Original { get { return original; } set { original = value; } }
+        public string NomeCondominio { get { return nome; } set { original = value;  nome = "Condomínio " + value; } }
         public List<Bloco> Blocos {
             get
             {
@@ -24,11 +26,11 @@ namespace Escritorio_v2.ViewModel
             set
             {
                 blocos = value;
-                if(PropertyChanged != null)
+                if (PropertyChanged != null)
                     PropertyChanged(this, new PropertyChangedEventArgs("Blocos"));
             }    
         }
-
+        
         public List<Apartamento> Apartamentos
         {
             get

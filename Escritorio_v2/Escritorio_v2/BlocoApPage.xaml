@@ -465,7 +465,7 @@
                 </Grid>
             </Grid>
         </Grid>
-        <Grid x:Name="gridBlocos" HorizontalAlignment="Center" Height="552" VerticalAlignment="Center" Width="215" Margin="0,100,0,0" Background="#FFCFCFCF">
+        <Grid x:Name="gridBlocos" HorizontalAlignment="Center" Height="552" VerticalAlignment="Center" Width="215" Margin="22,79,19,89" Background="#FFCFCFCF">
             <Grid.RowDefinitions>
                 <RowDefinition Height="497*"/>
                 <RowDefinition Height="55*"/>
@@ -477,13 +477,13 @@
                     <ColumnDefinition Width="72*"/>
                     <ColumnDefinition Width="71*"/>
                 </Grid.ColumnDefinitions>
-                <AppBarButton x:Name="btRename" HorizontalAlignment="Center" Icon="Edit" Label="Renomear" VerticalAlignment="Center" Background="{x:Null}" Grid.Column="2"/>
-                <AppBarButton x:Name="btNew" Icon="Add" Label="Novo" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <AppBarButton x:Name="btRename" HorizontalAlignment="Center" Icon="Edit" Label="Renomear" VerticalAlignment="Center" Background="{x:Null}" Grid.Column="2" Click="btRename_Click"/>
+                <AppBarButton x:Name="btNew" Icon="Add" Label="Novo" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btNew_Click"/>
                 <AppBarButton x:Name="btDelete" Icon="Delete" Label="Deletar" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Grid>
             <ListView x:Name="BlocosListView" Background="#FFE6E6E6" ItemsSource="{x:Bind ViewModel.Blocos, Mode=OneWay}" IsItemClickEnabled="True" ItemClick="BlocosListView_ItemClick" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
         </Grid>
-        <Grid x:Name="gridApartamentos" HorizontalAlignment="Center" Height="552" VerticalAlignment="Center" Width="215" Margin="0,100,0,0" Background="#FFCFCFCF" Grid.Column="1">
+        <Grid x:Name="gridApartamentos" HorizontalAlignment="Center" Height="552" VerticalAlignment="Center" Width="215" Margin="22,79,19,89" Background="#FFCFCFCF" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="497*"/>
                 <RowDefinition Height="55*"/>
@@ -500,6 +500,16 @@
             </Grid>
             <ListView x:Name="ApListView" Background="#FFE6E6E6" ItemsSource="{x:Bind ViewModel.Apartamentos, Mode=OneWay}" IsItemClickEnabled="True" ItemClick="ApListView_ItemClick" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
         </Grid>
-        <TextBlock x:Name="NomeCondominioTextBlock" HorizontalAlignment="Center" Margin="11,68,30,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="61" Width="471" Style="{StaticResource HeaderTextBlockStyle}" Text="{x:Bind ViewModel.NomeCondominio, Mode=OneWay}" FontSize="40"/>
+        <TextBlock x:Name="NomeCondominioTextBlock" HorizontalAlignment="Left" Margin="24,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="61" Width="482" Style="{StaticResource HeaderTextBlockStyle}" Text="{x:Bind ViewModel.NomeCondominio, Mode=OneWay}" FontSize="40"/>
+        <Grid HorizontalAlignment="Left" Height="54" Margin="0,0,0,8" VerticalAlignment="Bottom" Width="472" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="160*"/>
+                <ColumnDefinition Width="39*"/>
+                <ColumnDefinition Width="37*"/>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="textBox" HorizontalAlignment="Left" Margin="12,12,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="294" Height="32"/>
+            <AppBarButton x:Name="btOk" Icon="Forward" Label="Ok" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="6,0,0,-1" Grid.Column="2" Height="55" Click="btOk_Click"/>
+            <AppBarButton x:Name="btCancel" Icon="Clear" Label="Cancelar" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="4,0,6,-1" Grid.Column="1" Height="55" Click="btCancel_Click"/>
+        </Grid>
     </Grid>
 </Page>

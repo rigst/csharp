@@ -107,6 +107,7 @@ namespace Escritorio_v2
         }
 
         public static void Update(Page p) { p.Frame.Navigate(p.GetType(), ""); }
+        public static void Update(Page p, string s) { p.Frame.Navigate(p.GetType(), s); }
 
         private void App_BackRequested(object sender, Windows.UI.Core.BackRequestedEventArgs e)
         {

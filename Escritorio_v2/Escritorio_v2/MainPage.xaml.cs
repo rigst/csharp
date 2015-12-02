@@ -33,11 +33,12 @@ namespace Escritorio_v2
             this.InitializeComponent();
             textBox.Visibility = Visibility.Collapsed;
             btOk.Visibility = Visibility.Collapsed;
+            btCancel.Visibility = Visibility.Collapsed;
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
             minhaApp = (App)App.Current;
             Gerenciador = minhaApp.Gerenciador;
         }
-
+        
         private void btSelect_Click(object sender, RoutedEventArgs e)
         {
             Condominio cond = ((Condominio)CondominiosListView.SelectedItem);
@@ -92,19 +93,48 @@ namespace Escritorio_v2
             {
                 textBox.Visibility = Visibility.Visible;
                 btOk.Visibility = Visibility.Visible;
+                btCancel.Visibility = Visibility.Visible;
             }
         }
 
         private void btOk_Click(object sender, RoutedEventArgs e)
         {
-            string s = textBox.Text;
-            Condominio cond = ((Condominio)CondominiosListView.SelectedItem);
             List<Condominio> lista = minhaApp.Gerenciador.Condominios;
+
+            string s = textBox.Text;
+            if (s.Length < 1 || s.Equals(" ") || s.Equals("") || existeNaLista(lista, s)) return;
+
+            Condominio cond = ((Condominio)CondominiosListView.SelectedItem);
             foreach(var v in lista)
             {
-                if (v.Nome.Equals(cond.Nome)) v.Nome = s;
+                if (v.Nome.Equals(cond.Nome))
+                {
+                    v.Nome = s;
+                }
             }
             App.Update(this);
+        }        
+
+        private bool existeNaLista(List<Condominio> lista, string s)
+        {
+            foreach(var v in lista)
+            {
+                if (v.Nome == s) return true;
+            }
+            return false;
+        }
+
+        private void btCancel_Click(object sender, RoutedEventArgs e)
+        {
+            textBox.Visibility = Visibility.Collapsed;
+            btOk.Visibility = Visibility.Collapsed;
+            btCancel.Visibility = Visibility.Collapsed;
+            textBox.Text = "";
+        }
+
+        private void btSave_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

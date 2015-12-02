@@ -12,6 +12,8 @@ namespace Escritorio_v2
         private List<Apartamento> apartamentos;
         public List<Apartamento> Apartamentos { get { return apartamentos; } }
 
+        public int Numero { get { return numero; } set { numero = value; } }
+
         public Bloco(int numero)
         {
             this.numero = numero; apartamentos = new List<Apartamento>();
@@ -40,7 +42,8 @@ namespace Escritorio_v2
 
         public override String ToString()
         {
-            return "BLOCO 0" + numero;
+            if(Numero < 10) return "Bloco 0" + numero;
+            return "Bloco " + numero;
         }
 
         public String ToStringEspecifico()

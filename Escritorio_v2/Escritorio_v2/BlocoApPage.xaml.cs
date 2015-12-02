@@ -24,18 +24,25 @@ namespace Escritorio_v2
     public sealed partial class BlocoApPage : Page
     {
         public BlocoApPageViewModel ViewModel { get; set; }
+        private string controleEdicao = "";
+
         public BlocoApPage()
         {
             this.InitializeComponent();
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
+
             this.ViewModel = new BlocoApPageViewModel();
         }
-
+        
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
             if (e.Parameter != null)
             {
+                textBox.Visibility = Visibility.Collapsed;
+                btCancel.Visibility = Visibility.Collapsed;
+                btOk.Visibility = Visibility.Collapsed;
+
                 //ENCONTRA O CONDOMINIO
                 string nome = (string)e.Parameter;
                 App minhaApp = (App)App.Current;
@@ -65,7 +72,8 @@ namespace Escritorio_v2
         private void UpdateApartamentos(Bloco b)
         {
             List<Apartamento> listAp = b.Apartamentos;
-            if (listAp.Count != 0)
+            if(listAp == null || listAp.Count == 0) this.ViewModel.ApAtual = null;
+            else
             {
                 Apartamento ap = listAp.First<Apartamento>();
                 this.ViewModel.ApAtual = ap;
@@ -80,7 +88,7 @@ namespace Escritorio_v2
             this.ViewModel.Apartamentos = listAp;
 
             Apartamento ap = null;
-            if (listAp.Count != 0)
+            if (listAp != null && listAp.Count != 0)
             {
                 ap = listAp.First<Apartamento>();
             }
@@ -92,7 +100,96 @@ namespace Escritorio_v2
             Apartamento ap = (Apartamento)e.ClickedItem;
             this.ViewModel.ApAtual = ap;
         }
-        
+
+        private void btNew_Click(object sender, RoutedEventArgs e)
+        {
+            List<Bloco> lista = ViewModel.Blocos;
+            int count = 1;
+
+            while (existeNum(lista, count))
+            {
+                count++;
+            }
+            
+            Bloco novoBloco = new Bloco(count);
+            lista.Add(novoBloco);
+            ViewModel.Blocos = lista;
+            this.Frame.Navigate(typeof(MainPage), ViewModel.Original);
+            App.Update(this, ViewModel.Original);
+        }
+
+        private bool existeNum(List<Bloco> lista, int n)
+        {
+            bool existe = false;
+            foreach (var v in lista)
+            {
+                if (v.Numero == n) existe = true;
+            }
+            return existe;
+        }
+
+        private void btRename_Click(object sender, RoutedEventArgs e)
+        {
+            Bloco b = (Bloco)BlocosListView.SelectedItem;
+            if (b != null)
+            {
+                textBox.Visibility = Visibility.Visible;
+                btOk.Visibility = Visibility.Visible;
+                btCancel.Visibility = Visibility.Visible;
+                controleEdicao = "Bloco";
+            }
+        }
+
+        private void btCancel_Click(object sender, RoutedEventArgs e)
+        {
+            textBox.Visibility = Visibility.Collapsed;
+            btOk.Visibility = Visibility.Collapsed;
+            btCancel.Visibility = Visibility.Collapsed;
+            textBox.Text = "";
+        }
+
+        private void btOk_Click(object sender, RoutedEventArgs e)
+        {
+            string s = textBox.Text;
+            int num = 0;
+            if (s.Length < 1 || s.Equals(" ") || s.Equals("")) return;
+
+            try
+            {
+                num = Int32.Parse(s);
+            }
+            catch(Exception)
+            {
+                textBox.Text = "";
+                return;
+            }
+            
+            if (controleEdicao.Equals("Bloco"))
+            {
+                Bloco b = ((Bloco)BlocosListView.SelectedItem);
+                List<Bloco> lista = ViewModel.Blocos;
+                if (existeNaLista(lista, num))
+                {
+                    textBox.Text = ""; return;
+                }
+
+                foreach (var v in lista)
+                {
+                    if (v.Numero == b.Numero) v.Numero = num;
+                }
+            }
+            this.Frame.Navigate(typeof(MainPage), ViewModel.Original);
+            App.Update(this, ViewModel.Original);
+        }
+
+        private bool existeNaLista(List<Bloco> lista, int s)
+        {
+            foreach (var v in lista)
+            {
+                if (v.Numero == s) return true;
+            }
+            return false;
+        }
     }
 }
 

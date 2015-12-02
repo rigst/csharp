@@ -15,7 +15,7 @@
             <CommandBar.Content>
                 <Grid/>
             </CommandBar.Content>
-            <AppBarButton x:Name="btSave" Icon="Save" Label="Salvar"/>
+            <AppBarButton x:Name="btSave" Icon="Save" Label="Salvar" Click="btSave_Click"/>
             <AppBarButton x:Name="btLoad" Icon="OpenFile" Label="Carregar"/>
         </CommandBar>
     </Page.TopAppBar>
@@ -23,14 +23,15 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid HorizontalAlignment="Center" Height="570" Margin="0" VerticalAlignment="Center" Width="625">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="21*"/>
-                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="459*"/>
+                <ColumnDefinition Width="86*"/>
+                <ColumnDefinition Width="86*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="491*"/>
                 <RowDefinition Height="80*"/>
             </Grid.RowDefinitions>
-            <Grid HorizontalAlignment="Center" Height="466" VerticalAlignment="Center" Width="584" Margin="21,12,20,12" Background="#FFCFCFCF" Grid.ColumnSpan="2">
+            <Grid HorizontalAlignment="Center" Height="466" VerticalAlignment="Center" Width="584" Margin="21,12,20,12" Background="#FFCFCFCF" Grid.ColumnSpan="3">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="405*"/>
                     <RowDefinition Height="61*"/>
@@ -51,8 +52,9 @@
                     <AppBarButton x:Name="btSelect" HorizontalAlignment="Center" Icon="Accept" Label="Selecionar" Margin="15,0,14,0" VerticalAlignment="Center" Grid.Column="5" Click="btSelect_Click" Height="61"/>
                 </Grid>
             </Grid>
-            <TextBox x:Name="textBox" HorizontalAlignment="Center" Margin="0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="482"/>
-            <AppBarButton x:Name="btOk" HorizontalAlignment="Center" Icon="Forward" Label="Ok" Margin="0" VerticalAlignment="Center" Height="61" Grid.Column="1" Grid.Row="1" Click="btOk_Click"/>
+            <TextBox x:Name="textBox" HorizontalAlignment="Center" Margin="0" Grid.Row="1" TextWrapping="Wrap" Text="" Width="410" Height="32" VerticalAlignment="Center"/>
+            <AppBarButton x:Name="btOk" HorizontalAlignment="Center" Icon="Forward" Label="Ok" Margin="0" VerticalAlignment="Center" Height="61" Grid.Column="2" Grid.Row="1" Click="btOk_Click"/>
+            <AppBarButton x:Name="btCancel" HorizontalAlignment="Center" Icon="Clear" Label="Cancelar" Margin="0" VerticalAlignment="Center" Height="61" Grid.Column="1" Grid.Row="1" Click="btCancel_Click"/>
         </Grid>
 
     </Grid>

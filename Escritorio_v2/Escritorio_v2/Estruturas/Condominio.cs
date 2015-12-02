@@ -41,9 +41,9 @@ namespace Escritorio_v2
             return null;
         }
 
-        public override String ToString()
+        public override string ToString()
         {
-            return "CONDOMINIO " + Nome + "\n";            
+            return "Condomínio " + Nome + "\n";            
         }
 
         public String ToStringEspecifico()
