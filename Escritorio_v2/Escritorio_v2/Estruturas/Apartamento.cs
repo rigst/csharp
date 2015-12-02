@@ -119,10 +119,24 @@ namespace Escritorio_v2
             return "Apartamento " + numero;
         }
 
-        public string toStringEspecifico()
+        public string getRelatorio()
         {
-            return "Apartamento " + numero + " :\n" + "NOME : " + nome + "\nCOTAS :\n" + cotas + "\nACORDOS :\n" + acordos + "\nPROCESSOS :\n" + processos;
-
+            string msg = "Apartamento " + numero + " :\n" + "NOME : " + nome + "\nCOTAS :\n";
+            foreach(var v in cotas)
+            {
+                msg += v.getRelatorio() + "\n";
+            }
+            msg += "\nACORDOS :\n";
+            foreach (var v in acordos)
+            {
+                msg += v.getRelatorio() + "\n";
+            }
+            msg += "\nPROCESSOS :\n";
+            foreach (var v in processos)
+            {
+                msg += v.getRelatorio() + "\n";
+            }
+            return msg;
         }
 
 

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -26,7 +27,7 @@ namespace Escritorio_v2
     public sealed partial class MainPage : Page
     {
         private Gerenciador Gerenciador { get; set; }
-        App minhaApp;
+        private static App minhaApp;
 
         public MainPage()
         {
@@ -132,10 +133,14 @@ namespace Escritorio_v2
             textBox.Text = "";
         }
 
-        private void btSave_Click(object sender, RoutedEventArgs e)
+        public async void btSave_Click(object sender, RoutedEventArgs e)
         {
-
+            StorageFolder fold = Windows.Storage.ApplicationData.Current.LocalFolder;
+            //C:\Users\Rodrigo\AppData\Local\Packages\ab4e3a68-b729-4a53-b8d8-05b98dc64adf_m5kereyqkfrtt\LocalState
+            StorageFile file = await fold.CreateFileAsync("armazenado.txt", CreationCollisionOption.ReplaceExisting);
+            await FileIO.WriteTextAsync(file, Gerenciador.getRelatorio());
+            textBox.Text = "Arquivo Salvo com Sucesso!";
         }
-        
+
     }
 }

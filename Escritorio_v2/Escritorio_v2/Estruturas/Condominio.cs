@@ -46,14 +46,14 @@ namespace Escritorio_v2
             return "Condomínio " + Nome + "\n";            
         }
 
-        public String ToStringEspecifico()
+        public string getRelatorio()
         {
             String msg = "CONDOMINIO " + Nome + "\n";
             msg += "BLOCOS\nBlocos";
-            /*   foreach (var v in blocos)
-               {
-                   msg += v + "\n";
-               }*/
+            foreach (var v in blocos)
+            {
+                msg += v.getRelatorio() + "\n";
+            }
             return msg;
         }
     }

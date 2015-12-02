@@ -70,6 +70,16 @@ namespace Escritorio_v2
             return null;
         }
         
+        public string getRelatorio()
+        {
+            string msg = "";
+            foreach(Condominio cond in Condominios)
+            {
+                msg += cond.getRelatorio() + "\n";
+            }
+            return msg;
+        }
+
         public override String ToString()
         {
             return "Gerenciador";

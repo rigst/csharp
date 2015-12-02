@@ -48,6 +48,11 @@ namespace Escritorio_v2
 
             return msg;
         }
+
+        public string getRelatorio()
+        {
+            return ToString();
+        }
     }
 
 }
