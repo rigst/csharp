@@ -91,14 +91,14 @@ namespace Escritorio_v2
         }
 
         /******************************PROCESSOS****************************************************/
-        public void addProcesso(String reu, String especie, int numProcesso, double valorAjuizado, Data dataAjuizamento,
+        public void addProcesso(String reu, String especie, string numProcesso, double valorAjuizado, Data dataAjuizamento,
                 Data periodo, Data ultMov)
         {
             Processo p = new Processo(reu, especie, numProcesso, valorAjuizado, dataAjuizamento, periodo, ultMov);
             processos.Add( p);
         }
 
-        public bool delProcesso(int numProcesso)
+        public bool delProcesso(string numProcesso)
         {
             foreach (var v in processos)
             {

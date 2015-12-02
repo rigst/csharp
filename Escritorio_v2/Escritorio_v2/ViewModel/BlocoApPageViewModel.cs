@@ -18,6 +18,7 @@ namespace Escritorio_v2.ViewModel
 
         public Cota CotaAux { get; set; }
         public Acordo AcordoAux { get; set; }
+        public Processo ProcessoAux { get; set; }
 
         public string Original { get { return original; } set { original = value; } }
         public string NomeCondominio { get { return nome; } set { original = value;  nome = "Condomínio " + value; } }

@@ -392,9 +392,9 @@
     <Grid x:Name="gridMain" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="97*"/>
-            <RowDefinition Height="427*"/>
-            <RowDefinition Height="59*"/>
-            <RowDefinition Height="137*"/>
+            <RowDefinition Height="451*"/>
+            <RowDefinition Height="43*"/>
+            <RowDefinition Height="129*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -424,73 +424,42 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Grid x:Name="gridProcessos" Background="#FFCBCBCB" Grid.Row="2">
+                <Grid x:Name="gridProcessos" Background="#FFAAAAAA" Grid.Row="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="32*"/>
-                        <RowDefinition Height="31*"/>
-                        <RowDefinition Height="76*"/>
                         <RowDefinition Height="45*"/>
+                        <RowDefinition Height="35*"/>
+                        <RowDefinition Height="118*"/>
                     </Grid.RowDefinitions>
-                    <Grid Grid.Row="3" Grid.ColumnSpan="3">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="0*"/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="10*"/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <AppBarButton x:Name="btDeletar3" Icon="Delete" Label="Renomear" Background="{x:Null}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Style="{StaticResource AppBarButtonStyle3}" Width="Auto" Grid.RowSpan="2" Grid.Column="3">
-                            <AppBarButton x:Name="btRename1_Copy5" Icon="Edit" Label="Renomear" Background="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource AppBarButtonStyle2}" Height="48" Width="48"/>
-                        </AppBarButton>
-                        <AppBarButton x:Name="btAdicionar3" Icon="Add" Label="Renomear" Background="{x:Null}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0" Style="{StaticResource AppBarButtonStyle3}" Width="Auto" Grid.RowSpan="2" Grid.Column="2">
-                            <AppBarButton x:Name="btRename1_Copy1" Icon="Edit" Label="Renomear" Background="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource AppBarButtonStyle2}" Height="48" Width="48"/>
-                        </AppBarButton>
-                    </Grid>
                     <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Último Movimento" TextAlignment="Center" FontSize="17.333" Grid.Row="1"/>
                     <TextBlock x:Name="textBlock_Copy" TextWrapping="Wrap" Text="Número do Processo" TextAlignment="Center" FontSize="17.333" Grid.Column="1" Grid.Row="1"/>
                     <TextBlock x:Name="textBlock_Copy1" TextWrapping="Wrap" Text="Réu" TextAlignment="Center" FontSize="17.333" Grid.Column="2" Grid.Row="1"/>
                     <TextBlock x:Name="textBlock_Copy2" TextWrapping="Wrap" Text="Processos" TextAlignment="Center" FontSize="17.333" Grid.ColumnSpan="3" FontStyle="Italic" Foreground="#FF3F3F3F"/>
-                    <ListView x:Name="ProcessosListView" Background="#FFF0F0F0" ItemsSource="{x:Bind ViewModel.ApAtual.Processos, Mode=OneWay}" ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3" Grid.Row="2"/>
+                    <ListView x:Name="ProcessosListView" Background="#FFCFCFCF" ItemsSource="{x:Bind ViewModel.ApAtual.Processos, Mode=OneWay}" ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3" Grid.Row="2"/>
+                    <AppBarButton x:Name="btAdicionar3" Icon="Add" Label="Renomear" Background="{x:Null}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="93,0,76,0" Style="{StaticResource AppBarButtonStyle3}" Width="Auto" Grid.Column="2" Click="btAdicionar3_Click">
+                        <AppBarButton x:Name="btRename1_Copy1" Icon="Edit" Label="Renomear" Background="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource AppBarButtonStyle2}" Height="48" Width="48"/>
+                    </AppBarButton>
+                    <AppBarButton x:Name="btDeletar3" Icon="Delete" Label="Renomear" Background="{x:Null}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Style="{StaticResource AppBarButtonStyle3}" Width="Auto" Grid.Column="2" Margin="172,0,0,0" Click="btDeletar3_Click">
+                        <AppBarButton x:Name="btRename1_Copy5" Icon="Edit" Label="Renomear" Background="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource AppBarButtonStyle2}" Height="48" Width="48"/>
+                    </AppBarButton>
                 </Grid>
-                <Grid x:Name="gridCotas" Background="#FFCBCBCB">
+                <Grid x:Name="gridCotas" Background="#FFAAAAAA">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
+                        <ColumnDefinition Width="186*"/>
+                        <ColumnDefinition Width="186*"/>
+                        <ColumnDefinition Width="217*"/>
+                        <ColumnDefinition Width="79*"/>
+                        <ColumnDefinition Width="76*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="32*"/>
-                        <RowDefinition Height="31*"/>
-                        <RowDefinition Height="76*"/>
-                        <RowDefinition Height="45*"/>
+                        <RowDefinition Height="22*"/>
+                        <RowDefinition Height="17*"/>
+                        <RowDefinition Height="60*"/>
                     </Grid.RowDefinitions>
-                    <Grid Grid.Row="3" Grid.ColumnSpan="4">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="0*"/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="10*"/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <AppBarButton x:Name="btAdicionar1" Icon="Add" Label="Renomear" Background="{x:Null}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0" Style="{StaticResource AppBarButtonStyle3}" Width="Auto" Grid.RowSpan="2" Grid.Column="2" Click="btAdicionar1_Click">
-                            <AppBarButton x:Name="btRename1_Copy6" Icon="Edit" Label="Renomear" Background="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource AppBarButtonStyle2}" Height="48" Width="48"/>
-                        </AppBarButton>
-                        <AppBarButton x:Name="btDeletar1" Icon="Delete" Label="Renomear" Background="{x:Null}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Style="{StaticResource AppBarButtonStyle3}" Width="Auto" Grid.RowSpan="2" Grid.Column="3" Margin="0" Click="btDeletar1_Click">
-                            <AppBarButton x:Name="btRename1_Copy4" Icon="Edit" Label="Renomear" Background="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource AppBarButtonStyle2}" Height="48" Width="48"/>
-                        </AppBarButton>
-                    </Grid>
                     <TextBlock x:Name="textBlock1" TextWrapping="Wrap" TextAlignment="Center" FontSize="17.333" Grid.Row="1">
                     	<Run Text="Data de "/>
                     	<Run Text="Vencimento"/>
@@ -500,9 +469,15 @@
                     	<Run Text="Pago"/>
                     </TextBlock>
                     <TextBlock x:Name="textBlock_Copy4" TextWrapping="Wrap" Text="Data de Pagamento" TextAlignment="Center" FontSize="17.333" Grid.Column="2" Grid.Row="1"/>
-                    <TextBlock x:Name="textBlock_Copy5" TextWrapping="Wrap" Text="Cotas" TextAlignment="Center" FontSize="17.333" Grid.ColumnSpan="4" FontStyle="Italic" Foreground="#FF3F3F3F"/>
-                    <ListView x:Name="CotasListView" Background="#FFF0F0F0" ItemsSource="{x:Bind ViewModel.ApAtual.Cotas, Mode=OneWay}" ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="4" Grid.Row="2"/>
-                    <TextBlock x:Name="textBlock_Copy9" TextWrapping="Wrap" Text="Observação" TextAlignment="Center" FontSize="17.333" Grid.Column="3" Grid.Row="1"/>
+                    <TextBlock x:Name="textBlock_Copy5" TextWrapping="Wrap" Text="Cotas" TextAlignment="Center" FontSize="17.333" Grid.ColumnSpan="5" FontStyle="Italic" Foreground="#FF3F3F3F"/>
+                    <ListView x:Name="CotasListView" Background="#FFCFCFCF" ItemsSource="{x:Bind ViewModel.ApAtual.Cotas, Mode=OneWay}" ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="5" Grid.Row="2"/>
+                    <TextBlock x:Name="textBlock_Copy9" TextWrapping="Wrap" Text="Observação" TextAlignment="Center" FontSize="17.333" Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="2"/>
+                    <AppBarButton x:Name="btAdicionar1" Icon="Add" Label="Renomear" Background="{x:Null}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Style="{StaticResource AppBarButtonStyle3}" Width="Auto" Grid.Column="3" Click="btAdicionar1_Click">
+                        <AppBarButton x:Name="btRename1_Copy4" Icon="Edit" Label="Renomear" Background="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource AppBarButtonStyle2}" Height="48" Width="48"/>
+                    </AppBarButton>
+                    <AppBarButton x:Name="btDeletar1" Icon="Delete" Label="Renomear" Background="{x:Null}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Style="{StaticResource AppBarButtonStyle3}" Width="Auto" Grid.Column="4" Click="btDeletar1_Click">
+                        <AppBarButton x:Name="btRename1_Copy6" Icon="Edit" Label="Renomear" Background="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource AppBarButtonStyle2}" Height="48" Width="48"/>
+                    </AppBarButton>
                 </Grid>
                 <Grid x:Name="gridProcessos_Copy" Background="#FFAAAAAA" Grid.Row="1">
                     <Grid.ColumnDefinitions>
@@ -512,29 +487,10 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="32*"/>
-                        <RowDefinition Height="31*"/>
-                        <RowDefinition Height="76*"/>
-                        <RowDefinition Height="45*"/>
+                        <RowDefinition Height="44*"/>
+                        <RowDefinition Height="34*"/>
+                        <RowDefinition Height="121*"/>
                     </Grid.RowDefinitions>
-                    <Grid Grid.Row="3" Grid.ColumnSpan="4">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="0*"/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="10*"/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <AppBarButton x:Name="btDeletar2" Icon="Delete" Label="Renomear" Background="{x:Null}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Style="{StaticResource AppBarButtonStyle3}" Width="Auto" Grid.RowSpan="2" Grid.Column="3" Click="btDeletar2_Click">
-                            <AppBarButton x:Name="btRename1_Copy8" Icon="Edit" Label="Renomear" Background="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource AppBarButtonStyle2}" Height="48" Width="48"/>
-                        </AppBarButton>
-                        <AppBarButton x:Name="btAdicionar2" Icon="Add" Label="Renomear" Background="{x:Null}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0" Style="{StaticResource AppBarButtonStyle3}" Width="Auto" Grid.RowSpan="2" Grid.Column="2" Click="btAdicionar2_Click">
-                            <AppBarButton x:Name="btRename1_Copy9" Icon="Edit" Label="Renomear" Background="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource AppBarButtonStyle2}" Height="48" Width="48"/>
-                        </AppBarButton>
-                    </Grid>
                     <TextBlock x:Name="textBlock2" TextWrapping="Wrap" TextAlignment="Center" FontSize="17.333" Grid.Row="1" >
                     	<Run Text="Data de "/>
                     	<Run Text="Assinatura"/>
@@ -542,8 +498,14 @@
                     <TextBlock x:Name="textBlock_Copy6" TextWrapping="Wrap" Text="Processo" TextAlignment="Center" FontSize="17.333" Grid.Column="1" Grid.Row="1"/>
                     <TextBlock x:Name="textBlock_Copy7" TextWrapping="Wrap" Text="Data de Início" TextAlignment="Center" FontSize="17.333" Grid.Column="2" Grid.Row="1"/>
                     <TextBlock x:Name="textBlock_Copy8" TextWrapping="Wrap" Text="Acordos" TextAlignment="Center" FontSize="17.333" Grid.ColumnSpan="4" FontStyle="Italic" Foreground="#FF3F3F3F"/>
-                    <ListView x:Name="AcordosListView" Background="#FFF0F0F0" ItemsSource="{x:Bind ViewModel.ApAtual.Acordos, Mode=OneWay}" ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="4" Grid.Row="2" AllowDrop="True" CanDrag="True"/>
+                    <ListView x:Name="AcordosListView" Background="#FFCFCFCF" ItemsSource="{x:Bind ViewModel.ApAtual.Acordos, Mode=OneWay}" ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="4" Grid.Row="2" AllowDrop="True" CanDrag="True"/>
                     <TextBlock x:Name="textBlock_Copy10" TextWrapping="Wrap" TextAlignment="Center" FontSize="17.333" Grid.Column="3" Grid.Row="1" Text="Data de Término"/>
+                    <AppBarButton x:Name="btAdicionar2" Icon="Add" Label="Renomear" Background="{x:Null}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="31,0,76,0" Style="{StaticResource AppBarButtonStyle3}" Width="Auto" Grid.Column="3" Click="btAdicionar2_Click">
+                        <AppBarButton x:Name="btRename1_Copy7" Icon="Edit" Label="Renomear" Background="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource AppBarButtonStyle2}" Height="48" Width="48"/>
+                    </AppBarButton>
+                    <AppBarButton x:Name="btDeletar2" Icon="Delete" Label="Renomear" Background="{x:Null}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Style="{StaticResource AppBarButtonStyle3}" Width="Auto" Grid.Column="3" Margin="110,0,0,0" Click="btDeletar2_Click">
+                        <AppBarButton x:Name="btRename1_Copy8" Icon="Edit" Label="Renomear" Background="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource AppBarButtonStyle2}" Height="48" Width="48"/>
+                    </AppBarButton>
                 </Grid>
             </Grid>
             <AppBarButton x:Name="btEditarNome" Icon="Edit" Label="Renomear" Background="{x:Null}" Style="{StaticResource AppBarButtonStyle4}" Grid.Column="2" Width="59" Height="44" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" Grid.Row="1" Click="btEditarNome_Click">
@@ -599,7 +561,7 @@
             <AppBarButton x:Name="btOk" Icon="Forward" Label="Ok" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="6,0,0,-1" Grid.Column="2" Height="55" Click="btOk_Click"/>
             <AppBarButton x:Name="btCancel" Icon="Clear" Label="Cancelar" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="4,0,6,-1" Grid.Column="1" Height="55" Click="btCancel_Click"/>
         </Grid>
-        <TextBlock x:Name="textBlockAux" TextWrapping="Wrap" FontSize="17.333" Margin="16,0,0,0" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Width="477" >
+        <TextBlock x:Name="textBlockAux" TextWrapping="Wrap" FontSize="17.333" Margin="0" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2" Width="477" Height="29" >
         	<Run Text="Data de "/>
         	<Run Text="Assinatura"/>
         </TextBlock>

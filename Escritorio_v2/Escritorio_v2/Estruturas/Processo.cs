@@ -10,15 +10,16 @@ namespace Escritorio_v2
     public class Processo
     {
         private string reu, especie;
-        private int numProcesso;
+        private string numProcesso;
         private double valorAjuizado;
         private Data dataAjuizamento, periodo, ultMov;
         private List<Data> ajuizado;
         private List<Custa> custas;
 
         public string Reu { get { return reu; } set { reu = value; } }
-        public int NumProcesso { get { return numProcesso; } set { numProcesso = value; } }
+        public string NumProcesso { get { return numProcesso; } set { numProcesso = value; } }
         public double ValorAjuizado { get { return valorAjuizado; } set { valorAjuizado = value;} }
+        public string Especie { get { return especie; } set { especie = value; } }
         public Data DataAjuizamento { get { return dataAjuizamento; } set { dataAjuizamento = value; } }
         public Data Periodo { get { return periodo; } set { periodo = value; } }
         public Data UltimoMovimento { get { return ultMov; } set { ultMov = value; } }
@@ -33,7 +34,9 @@ namespace Escritorio_v2
             public override String ToString() { return this.Data + "\t" + this.Valor; }
         }
 
-        public Processo(String reu, String especie, int numProcesso, double valorAjuizado, Data dataAjuizamento,
+        public Processo() { }
+
+        public Processo(String reu, String especie, string numProcesso, double valorAjuizado, Data dataAjuizamento,
                 Data periodo, Data ultMov)
         {
             this.reu = reu; this.especie = especie; this.numProcesso = numProcesso; this.valorAjuizado = valorAjuizado;
@@ -52,7 +55,7 @@ namespace Escritorio_v2
             custas.Add(new Custa(d, v));
         }
 
-        public int getNumProcesso() { return numProcesso; }
+        public string getNumProcesso() { return numProcesso; }
 
         public override string ToString()
         {

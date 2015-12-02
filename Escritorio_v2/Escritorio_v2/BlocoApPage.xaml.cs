@@ -177,6 +177,13 @@ namespace Escritorio_v2
                 ViewModel.ApAtual.Nome = s;
                 Update();
             }
+            else if (controleEdicao.Equals("Espécie"))
+            {
+                ViewModel.ProcessoAux.Especie = s;
+                textBlockAux.Text = "Digite o valor ajuizado:";
+                controleEdicao = "ValorAjuizado";
+                textBox.Text = "";
+            }
 
             if (s.Length < 1 || s.Equals(" ") || s.Equals("")) return;
 
@@ -192,6 +199,13 @@ namespace Escritorio_v2
                     textBox.Text = "";
                 }
                 catch (Exception) { textBox.Text = ""; return; }
+            }
+            else if (controleEdicao.Equals("Réu"))
+            {
+                ViewModel.ProcessoAux.Reu = s;
+                textBlockAux.Text = "Digite a data de ajuizamento:";
+                controleEdicao = "ProcessoDataAjuizamento";
+                textBox.Text = "";
             }
             else if (controleEdicao.Equals("ValorPago"))
             {
@@ -314,6 +328,66 @@ namespace Escritorio_v2
                     Update();
                 }
                 catch(Exception) { textBox.Text = ""; return; }
+            }
+            else if (controleEdicao.Equals("ProcessoNumero"))
+            {
+                try
+                {
+                    ViewModel.ProcessoAux = new Processo();
+                    ViewModel.ProcessoAux.NumProcesso = s;
+                    textBlockAux.Text = "Digite o nome do réu:";
+                    controleEdicao = "Réu";
+                    textBox.Text = "";
+
+                }
+                catch (Exception) { textBox.Text = ""; return; }
+            }
+            else if (controleEdicao.Equals("ProcessoDataAjuizamento"))
+            {
+                try
+                {
+                    Data novaData = new Data(s);
+                    ViewModel.ProcessoAux.DataAjuizamento = novaData;
+                    textBlockAux.Text = "Digite a espécie do processo:";
+                    controleEdicao = "Espécie";
+                    textBox.Text = "";
+                }
+                catch (Exception) { textBox.Text = ""; return; }
+            }
+            else if (controleEdicao.Equals("ValorAjuizado"))
+            {
+                try
+                {
+                    double valorA = Double.Parse(s);
+                    ViewModel.ProcessoAux.ValorAjuizado = valorA;
+                    textBlockAux.Text = "Digite o período";
+                    controleEdicao = "Período";
+                    textBox.Text = "";
+                }
+                catch (Exception) { textBox.Text = ""; return; }
+            }
+            else if (controleEdicao.Equals("Período"))
+            {
+                try
+                {
+                    Data periodo = new Data(s);
+                    ViewModel.ProcessoAux.Periodo = periodo;
+                    textBlockAux.Text = "Digite a data do último movimento:";
+                    controleEdicao = "UltimoMov";
+                    textBox.Text = "";
+                }
+                catch (Exception) { textBox.Text = ""; return; }
+            }
+            else if (controleEdicao.Equals("UltimoMov"))
+            {
+                try
+                {
+                    Data ult = new Data(s);
+                    ViewModel.ProcessoAux.UltimoMovimento = ult;
+                    ViewModel.ApAtual.Processos.Add(ViewModel.ProcessoAux);
+                    Update();
+                }
+                catch (Exception) { textBox.Text = ""; return; }
             }
 
 
@@ -462,6 +536,7 @@ namespace Escritorio_v2
 
         private void btEditarBox_Click(object sender, RoutedEventArgs e)
         {
+            if (ApListView.SelectedItem == null || ViewModel.ApAtual == null) return;
             textBlockAux.Text = "Digite o número do box:";
             textBlockAux.Visibility = Visibility.Visible;
             textBox.Visibility = Visibility.Visible;
@@ -494,8 +569,11 @@ namespace Escritorio_v2
         private void btDeletar1_Click(object sender, RoutedEventArgs e)
         {
             Cota cota = (Cota)CotasListView.SelectedItem;
-            ViewModel.ApAtual.Cotas.Remove(cota);
-            Update();
+            if(cota != null)
+            {
+                ViewModel.ApAtual.Cotas.Remove(cota);
+                Update();
+            }
         }
 
         private void btAdicionar2_Click(object sender, RoutedEventArgs e)
@@ -512,12 +590,16 @@ namespace Escritorio_v2
         private void btDeletar2_Click(object sender, RoutedEventArgs e)
         {
             Acordo acordo = (Acordo)AcordosListView.SelectedItem;
-            ViewModel.ApAtual.Acordos.Remove(acordo);
-            Update();
+            if(acordo != null)
+            {
+                ViewModel.ApAtual.Acordos.Remove(acordo);
+                Update();
+            }
         }
 
         private void btEditarNome_Click(object sender, RoutedEventArgs e)
         {
+            if (ApListView.SelectedItem == null || ViewModel.ApAtual == null) return;
             textBlockAux.Text = "Digite o nome:";
             textBlockAux.Visibility = Visibility.Visible;
             textBox.Visibility = Visibility.Visible;
@@ -532,8 +614,27 @@ namespace Escritorio_v2
             {
                 btOk_Click(sender, e);
             }
+        }
 
+        private void btAdicionar3_Click(object sender, RoutedEventArgs e)
+        {
+            //ADICIONA PROCESSO
+            textBlockAux.Text = "Digite o número do processo:";
+            textBlockAux.Visibility = Visibility.Visible;
+            textBox.Visibility = Visibility.Visible;
+            btOk.Visibility = Visibility.Visible;
+            btCancel.Visibility = Visibility.Visible;
+            controleEdicao = "ProcessoNumero";
+        }
 
+        private void btDeletar3_Click(object sender, RoutedEventArgs e)
+        {
+            Processo p = (Processo)ProcessosListView.SelectedItem;
+            if(p != null)
+            {
+                ViewModel.ApAtual.Processos.Remove(p);
+                Update();
+            }
         }
     }
 }
