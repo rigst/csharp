@@ -58,6 +58,12 @@ namespace Escritorio_v2
             set { valorTotal = value; }
         }
         
+        public double ValorParcela
+        {
+            get { return valorParcela; }
+            set { valorParcela = value; }
+        }
+
         public int NumParcelas
         {
             get { return numParcelas; }
@@ -92,6 +98,8 @@ namespace Escritorio_v2
                             "\tVencimento Original : " + vencimentoOriginal + "\tData Pagamento : " + dataPagamento;
             }
         }
+
+        public Acordo() { }
 
         public Acordo(String devedor, String processo, String formaAtualizacao, Data dataAssinatura, Data inicio,
                 Data fim, double valorTotal, double valorParcela, int numParcelas)

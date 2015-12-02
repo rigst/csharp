@@ -46,6 +46,8 @@ namespace Escritorio_v2
             base.OnNavigatedTo(e);
             if (e.Parameter != null)
             {
+                    textBlockAux.Text = "";
+                    textBlockAux.Visibility = Visibility.Collapsed;
                     textBox.Visibility = Visibility.Collapsed;
                     btCancel.Visibility = Visibility.Collapsed;
                     btOk.Visibility = Visibility.Collapsed;
@@ -139,6 +141,8 @@ namespace Escritorio_v2
             Bloco b = (Bloco)BlocosListView.SelectedItem;
             if (b != null)
             {
+                textBlockAux.Text = "Digite o número do bloco:";
+                textBlockAux.Visibility = Visibility.Visible;
                 textBox.Visibility = Visibility.Visible;
                 btOk.Visibility = Visibility.Visible;
                 btCancel.Visibility = Visibility.Visible;
@@ -148,17 +152,170 @@ namespace Escritorio_v2
 
         private void btCancel_Click(object sender, RoutedEventArgs e)
         {
+            textBlockAux.Text = "";
+            textBlockAux.Visibility = Visibility.Visible;
             textBox.Visibility = Visibility.Collapsed;
             btOk.Visibility = Visibility.Collapsed;
             btCancel.Visibility = Visibility.Collapsed;
             textBox.Text = "";
         }
+      
 
         private void btOk_Click(object sender, RoutedEventArgs e)
         {
+            if (btOk.Visibility == Visibility.Collapsed) return;
             string s = textBox.Text;
             int num = 0;
+            if (controleEdicao.Equals("Observação"))
+            {
+                ViewModel.CotaAux.Observacao = s;
+                ViewModel.ApAtual.addCota(ViewModel.CotaAux);
+                Update();
+            }
+            else if (controleEdicao.Equals("NomeAp"))
+            {
+                ViewModel.ApAtual.Nome = s;
+                Update();
+            }
+
             if (s.Length < 1 || s.Equals(" ") || s.Equals("")) return;
+
+            if (controleEdicao.Equals("DataVencimento"))
+            {
+                try
+                {
+                    ViewModel.CotaAux = new Cota();
+                    Data dataV = new Data(s);
+                    ViewModel.CotaAux.DataVencimento = dataV;
+                    textBlockAux.Text = "Digite o valor pago:";
+                    controleEdicao = "ValorPago";
+                    textBox.Text = "";
+                }
+                catch (Exception) { textBox.Text = ""; return; }
+            }
+            else if (controleEdicao.Equals("ValorPago"))
+            {
+                try
+                {
+                    double valor = Double.Parse(s);
+                    ViewModel.CotaAux.ValorPago = valor;
+                    textBlockAux.Text = "Digite a data de pagamento:";
+                    controleEdicao = "DataPagamento";
+                    textBox.Text = "";
+
+                }
+                catch (Exception) { textBox.Text = ""; return; }
+            }
+            else if (controleEdicao.Equals("DataPagamento"))
+            {
+                try
+                {
+                    Data dataP = new Data(s);
+                    ViewModel.CotaAux.DataPagamento = dataP;
+                    textBlockAux.Text = "Digite uma observação:";
+                    controleEdicao = "Observação";
+                    textBox.Text = "";
+                }
+                catch (Exception) { textBox.Text = ""; return; }
+            }
+            else if (controleEdicao.Equals("Devedor"))
+            {
+                ViewModel.AcordoAux = new Acordo();
+                ViewModel.AcordoAux.Devedor = s;
+                textBlockAux.Text = "Digite o número do processo:";
+                controleEdicao = "NumeroProcesso";
+                textBox.Text = "";
+            }
+            else if (controleEdicao.Equals("NumeroProcesso"))
+            {
+                ViewModel.AcordoAux.Processo = s;
+                textBlockAux.Text = "Digite a data de assinatura:";
+                controleEdicao = "DataAssinatura";
+                textBox.Text = "";
+            }
+            else if (controleEdicao.Equals("DataAssinatura"))
+            {
+                try
+                {
+                    Data dataAssinatura = new Data(s);
+                    ViewModel.AcordoAux.DataAssinatura = dataAssinatura;
+                    textBlockAux.Text = "Digite a data de início:";
+                    controleEdicao = "DataInicio";
+                    textBox.Text = "";
+
+                }
+                catch (Exception) { textBox.Text = ""; return; }
+            }
+            else if (controleEdicao.Equals("DataInicio"))
+            {
+                try
+                {
+                    Data dataInicio = new Data(s);
+                    ViewModel.AcordoAux.Inicio = dataInicio;
+                    textBlockAux.Text = "Digite a data de fim:";
+                    controleEdicao = "DataFim";
+                    textBox.Text = "";
+
+                }
+                catch (Exception) { textBox.Text = ""; return; }
+            }
+            else if (controleEdicao.Equals("DataFim"))
+            {
+                try
+                {
+                    Data dataFim = new Data(s);
+                    ViewModel.AcordoAux.Fim = dataFim;
+                    textBlockAux.Text = "Digite o valor total:";
+                    controleEdicao = "ValorTotal";
+                    textBox.Text = "";
+
+                }
+                catch (Exception) { textBox.Text = ""; return; }
+            }
+            else if (controleEdicao.Equals("ValorTotal"))
+            {
+                try
+                {
+                    double valorTotal = Double.Parse(s);
+                    ViewModel.AcordoAux.ValorTotal = valorTotal;
+                    textBlockAux.Text = "Digite o valor da parcela:";
+                    controleEdicao = "ValorParcela";
+                    textBox.Text = "";
+
+                }
+                catch (Exception) { textBox.Text = ""; return; }
+            }
+            else if (controleEdicao.Equals("ValorParcela"))
+            {
+                try
+                {
+                    double parcela = Double.Parse(s);
+                    ViewModel.AcordoAux.ValorParcela = parcela;
+                    textBlockAux.Text = "Digite a forma de atualização:";
+                    controleEdicao = "FormaAtualização";
+                    textBox.Text = "";
+                }
+                catch (Exception) { textBox.Text = ""; return; }
+            }
+            else if (controleEdicao.Equals("FormaAtualização"))
+            {
+                ViewModel.AcordoAux.FormaAtualizacao = s;
+                textBlockAux.Text = "Digite o número de parcelas:";
+                controleEdicao = "NumeroParcelas";
+                textBox.Text = "";
+            }
+            else if (controleEdicao.Equals("NumeroParcelas"))
+            {
+                try
+                {
+                    int numParcelas = Int32.Parse(s);
+                    ViewModel.AcordoAux.NumParcelas = numParcelas;
+                    ViewModel.ApAtual.addAcordo(ViewModel.AcordoAux);
+                    Update();
+                }
+                catch(Exception) { textBox.Text = ""; return; }
+            }
+
 
             try
             {
@@ -248,7 +405,7 @@ namespace Escritorio_v2
         {
             List<Apartamento> lista = ViewModel.Apartamentos;
             int count = 100;
-
+            if (lista == null) return;
             while (existeNaLista(lista, count))
             {
                 count++;
@@ -274,6 +431,8 @@ namespace Escritorio_v2
             Apartamento ap = (Apartamento)ApListView.SelectedItem;
             if (ap != null)
             {
+                textBlockAux.Text = "Digite o número do apartamento:";
+                textBlockAux.Visibility = Visibility.Visible;
                 textBox.Visibility = Visibility.Visible;
                 btOk.Visibility = Visibility.Visible;
                 btCancel.Visibility = Visibility.Visible;
@@ -303,6 +462,8 @@ namespace Escritorio_v2
 
         private void btEditarBox_Click(object sender, RoutedEventArgs e)
         {
+            textBlockAux.Text = "Digite o número do box:";
+            textBlockAux.Visibility = Visibility.Visible;
             textBox.Visibility = Visibility.Visible;
             btOk.Visibility = Visibility.Visible;
             btCancel.Visibility = Visibility.Visible;
@@ -317,6 +478,61 @@ namespace Escritorio_v2
                 if (v.Numero == n) existe = true;
             }
             return existe;
+        }
+
+        private void btAdicionar1_Click(object sender, RoutedEventArgs e)
+        {
+            //ADICIONA COTA
+            textBlockAux.Text = "Digite a data de vencimento:";
+            textBlockAux.Visibility = Visibility.Visible;
+            textBox.Visibility = Visibility.Visible;
+            btOk.Visibility = Visibility.Visible;
+            btCancel.Visibility = Visibility.Visible;
+            controleEdicao = "DataVencimento";
+        }
+        
+        private void btDeletar1_Click(object sender, RoutedEventArgs e)
+        {
+            Cota cota = (Cota)CotasListView.SelectedItem;
+            ViewModel.ApAtual.Cotas.Remove(cota);
+            Update();
+        }
+
+        private void btAdicionar2_Click(object sender, RoutedEventArgs e)
+        {
+            //ADICIONA ACORDO
+            textBlockAux.Text = "Digite o nome do devedor:";
+            textBlockAux.Visibility = Visibility.Visible;
+            textBox.Visibility = Visibility.Visible;
+            btOk.Visibility = Visibility.Visible;
+            btCancel.Visibility = Visibility.Visible;
+            controleEdicao = "Devedor";
+        }
+
+        private void btDeletar2_Click(object sender, RoutedEventArgs e)
+        {
+            Acordo acordo = (Acordo)AcordosListView.SelectedItem;
+            ViewModel.ApAtual.Acordos.Remove(acordo);
+            Update();
+        }
+
+        private void btEditarNome_Click(object sender, RoutedEventArgs e)
+        {
+            textBlockAux.Text = "Digite o nome:";
+            textBlockAux.Visibility = Visibility.Visible;
+            textBox.Visibility = Visibility.Visible;
+            btOk.Visibility = Visibility.Visible;
+            btCancel.Visibility = Visibility.Visible;
+            controleEdicao = "NomeAp";
+        }
+
+        private void textBox_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == Windows.System.VirtualKey.Enter)
+            {
+                btOk_Click(sender, e);
+            }
+
         }
     }
 }

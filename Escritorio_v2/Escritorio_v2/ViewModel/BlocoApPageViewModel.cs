@@ -16,6 +16,9 @@ namespace Escritorio_v2.ViewModel
         private List<Apartamento> apartamentos;
         private Apartamento apAtual;
 
+        public Cota CotaAux { get; set; }
+        public Acordo AcordoAux { get; set; }
+
         public string Original { get { return original; } set { original = value; } }
         public string NomeCondominio { get { return nome; } set { original = value;  nome = "Condomínio " + value; } }
         public List<Bloco> Blocos {

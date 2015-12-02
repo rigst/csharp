@@ -10,7 +10,14 @@ namespace Escritorio_v2
     {
         public double valPago;
         public Data dataVencimento, dataPagamento;
-        public String obs;
+        public string obs;
+
+        public double ValorPago { get { return valPago; } set { valPago = value; } }
+        public Data DataVencimento { get { return dataVencimento; } set { dataVencimento = value; } }
+        public Data DataPagamento { get { return dataPagamento; } set { dataPagamento = value; } }
+        public string Observacao { get { return obs; } set { obs = value; } }
+
+        public Cota() { }
 
         public Cota(double valP, Data dVenc, Data dPag, String obs)
         {
@@ -33,7 +40,7 @@ namespace Escritorio_v2
         {
             string msg = espacos(1) + "" + dataVencimento;
             msg += espacos(2);
-            msg += "\tR$" + valPago + ",00";
+            msg += "\tR$" + valPago;
             msg += espacos(2);
             msg += "" + dataPagamento;
             msg += espacos(2);
