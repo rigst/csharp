@@ -26,32 +26,39 @@ namespace Escritorio_v2
         public BlocoApPageViewModel ViewModel { get; set; }
         private string controleEdicao = "";
 
+        private static BlocoApPage page;
+
         public BlocoApPage()
         {
             this.InitializeComponent();
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
-
+            page = this;
             this.ViewModel = new BlocoApPageViewModel();
         }
         
+        public static BlocoApPage getLastInstance()
+        {
+            return page;
+        }
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
             if (e.Parameter != null)
             {
-                textBox.Visibility = Visibility.Collapsed;
-                btCancel.Visibility = Visibility.Collapsed;
-                btOk.Visibility = Visibility.Collapsed;
+                    textBox.Visibility = Visibility.Collapsed;
+                    btCancel.Visibility = Visibility.Collapsed;
+                    btOk.Visibility = Visibility.Collapsed;
 
-                //ENCONTRA O CONDOMINIO
-                string nome = (string)e.Parameter;
-                App minhaApp = (App)App.Current;
-                Condominio cond = (from c in minhaApp.Gerenciador.Condominios
-                                   where c.Nome == nome
-                                   select c).FirstOrDefault();
-                this.ViewModel.NomeCondominio = cond.Nome;
-                //ATUALIZA OS BLOCOS
-                UpdateBlocos(cond);               
+                    //ENCONTRA O CONDOMINIO
+                    string nome = (string)e.Parameter;
+                    App minhaApp = (App)App.Current;
+                    Condominio cond = (from c in minhaApp.Gerenciador.Condominios
+                                       where c.Nome == nome
+                                       select c).FirstOrDefault();
+                    this.ViewModel.NomeCondominio = cond.Nome;
+                    //ATUALIZA OS BLOCOS
+                    UpdateBlocos(cond);
             }
 
         }
@@ -114,8 +121,7 @@ namespace Escritorio_v2
             Bloco novoBloco = new Bloco(count);
             lista.Add(novoBloco);
             ViewModel.Blocos = lista;
-            this.Frame.Navigate(typeof(MainPage), ViewModel.Original);
-            App.Update(this, ViewModel.Original);
+            Update();
         }
 
         private bool existeNum(List<Bloco> lista, int n)
@@ -177,9 +183,45 @@ namespace Escritorio_v2
                 {
                     if (v.Numero == b.Numero) v.Numero = num;
                 }
+
+                this.Frame.Navigate(typeof(MainPage), ViewModel.Original);
+                App.Update(this, ViewModel.Original);
+                return;
             }
-            this.Frame.Navigate(typeof(MainPage), ViewModel.Original);
-            App.Update(this, ViewModel.Original);
+            else if (controleEdicao.Equals("Apartamento"))
+            {
+                Apartamento ap = ((Apartamento)ApListView.SelectedItem);
+                List<Apartamento> lista = ViewModel.Apartamentos;
+                if (existeNaLista(lista, num))
+                {
+                    textBox.Text = ""; return;
+                }
+
+                foreach (var v in lista)
+                {
+                    if (v.Numero == ap.Numero) v.Numero = num;
+                }
+
+                Update();
+            }
+            else if (controleEdicao.Equals("Box"))
+            {
+                Apartamento ap = ((Apartamento)ApListView.SelectedItem);
+                List<Apartamento> lista = ViewModel.Apartamentos;
+                if (ap != null)
+                {
+                    foreach (var v in lista)
+                    {
+                        if (ap.Numero == v.Numero)
+                        {
+                            if (num < 10) v.Box = "0" + num;
+                            else v.Box = "" + num;
+                        }
+                        Update();
+                    }
+                }
+            }
+
         }
 
         private bool existeNaLista(List<Bloco> lista, int s)
@@ -189,6 +231,92 @@ namespace Escritorio_v2
                 if (v.Numero == s) return true;
             }
             return false;
+        }
+
+        private void btDelete_Click(object sender, RoutedEventArgs e)
+        {
+            Bloco b = ((Bloco)BlocosListView.SelectedItem);
+            if (b != null)
+            {
+                List<Bloco> lista = ViewModel.Blocos;
+                lista.Remove(b);
+                Update();
+            }
+        }
+
+        private void btNew1_Click(object sender, RoutedEventArgs e)
+        {
+            List<Apartamento> lista = ViewModel.Apartamentos;
+            int count = 100;
+
+            while (existeNaLista(lista, count))
+            {
+                count++;
+            }
+
+            Apartamento novoAp = new Apartamento(count);
+            lista.Add(novoAp);
+            ViewModel.Apartamentos = lista;
+            Update();
+        }
+
+        private bool existeNaLista(List<Apartamento> lista, int s)
+        {
+            foreach (var v in lista)
+            {
+                if (v.Numero == s) return true;
+            }
+            return false;
+        }
+
+        private void btRename1_Click(object sender, RoutedEventArgs e)
+        {
+            Apartamento ap = (Apartamento)ApListView.SelectedItem;
+            if (ap != null)
+            {
+                textBox.Visibility = Visibility.Visible;
+                btOk.Visibility = Visibility.Visible;
+                btCancel.Visibility = Visibility.Visible;
+                controleEdicao = "Apartamento";
+            }
+        }
+
+        private void btDelete1_Click(object sender, RoutedEventArgs e)
+        {
+            Apartamento ap = ((Apartamento)ApListView.SelectedItem);
+            List<Apartamento> lista = ViewModel.Apartamentos;
+            if(ap != null)
+            {
+                lista.Remove(ap);
+                Update();
+            }
+        }
+
+
+        private void Update()
+        {
+            this.Frame.Navigate(typeof(MainPage), ViewModel.Original);
+            App.Update(this, ViewModel.Original);
+            BlocoApPage nova = BlocoApPage.getLastInstance();
+            nova.ViewModel = this.ViewModel;
+        }
+
+        private void btEditarBox_Click(object sender, RoutedEventArgs e)
+        {
+            textBox.Visibility = Visibility.Visible;
+            btOk.Visibility = Visibility.Visible;
+            btCancel.Visibility = Visibility.Visible;
+            controleEdicao = "Box";
+        }
+
+        private bool existeNum(List<Apartamento> lista, int n)
+        {
+            bool existe = false;
+            foreach (var v in lista)
+            {
+                if (v.Numero == n) existe = true;
+            }
+            return existe;
         }
     }
 }

@@ -59,7 +59,7 @@ namespace Escritorio_v2
                 count++;
             }
 
-            string nome = "\"Novo Condomínio " + count + "\"";
+            string nome = "Novo Condomínio " + count;
             Condominio novoCond = new Condominio(nome);
             minhaApp.Gerenciador.Condominios.Add(novoCond);
             App.Update(this);

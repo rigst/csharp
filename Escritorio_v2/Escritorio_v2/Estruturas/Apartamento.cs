@@ -17,7 +17,7 @@ namespace Escritorio_v2
         private List<Processo> processos;
 
         public string Nome { get { return nome; } set { nome = value; } }
-        public string Box { get { return box; } set { box = value; } }
+        public string Box { get { return box; } set { box = "Box " + value; } }
         public int Numero { get { return numero; } set { numero = value; } }
 
         public List<Cota> Cotas { get { return cotas; } }

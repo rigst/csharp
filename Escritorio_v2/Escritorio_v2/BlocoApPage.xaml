@@ -198,13 +198,7 @@
                             <VisualStateManager.VisualStateGroups>
                                 <VisualStateGroup x:Name="ApplicationViewStates">
                                     <VisualState x:Name="FullSize"/>
-                                    <VisualState x:Name="Compact">
-                                        <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="TextLabel">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
-                                            </ObjectAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualState>
+                                    <VisualState x:Name="Compact"/>
                                     <VisualState x:Name="Overflow">
                                         <Storyboard>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="ContentRoot">
@@ -243,7 +237,100 @@
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="Content">
                                                 <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightAltBaseHighBrush}"/>
                                             </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="TextLabel">
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="OverflowTextLabel">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightAltBaseHighBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="OverflowTextLabel"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="Root">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightListMediumBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="Content">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightAltBaseHighBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="OverflowTextLabel">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightAltBaseHighBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <PointerDownThemeAnimation Storyboard.TargetName="OverflowTextLabel"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="Content">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlDisabledBaseLowBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="OverflowTextLabel">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlDisabledBaseLowBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <StackPanel x:Name="ContentRoot" MinHeight="{ThemeResource AppBarThemeCompactHeight}">
+                                <ContentPresenter x:Name="Content" AutomationProperties.AccessibilityView="Raw" Content="{TemplateBinding Icon}" Foreground="{TemplateBinding Foreground}" HorizontalAlignment="Stretch" Height="48" Margin="0"/>
+                            </StackPanel>
+                            <TextBlock x:Name="OverflowTextLabel" Foreground="{TemplateBinding Foreground}" FontSize="15" FontFamily="{TemplateBinding FontFamily}" HorizontalAlignment="Stretch" Margin="12,11,0,13" TextAlignment="Left" TextWrapping="NoWrap" Text="{TemplateBinding Label}" TextTrimming="Clip" Visibility="Collapsed" VerticalAlignment="Center"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="AppBarButtonStyle4" TargetType="AppBarButton">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseHighBrush}"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="Width" Value="68"/>
+            <Setter Property="UseSystemFocusVisuals" Value="True"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="AppBarButton">
+                        <Grid x:Name="Root" Background="{TemplateBinding Background}" MaxWidth="{TemplateBinding MaxWidth}" MinWidth="{TemplateBinding MinWidth}">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="ApplicationViewStates">
+                                    <VisualState x:Name="FullSize"/>
+                                    <VisualState x:Name="Compact"/>
+                                    <VisualState x:Name="Overflow">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="ContentRoot">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="OverflowTextLabel">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="OverflowWithToggleButtons">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="ContentRoot">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="OverflowTextLabel">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" Storyboard.TargetName="OverflowTextLabel">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="38,11,0,13"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal">
+                                        <Storyboard>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="OverflowTextLabel"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="PointerOver">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="Root">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightListLowBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="Content">
                                                 <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightAltBaseHighBrush}"/>
                                             </ObjectAnimationUsingKeyFrames>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="OverflowTextLabel">
@@ -260,9 +347,6 @@
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="Content">
                                                 <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightAltBaseHighBrush}"/>
                                             </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="TextLabel">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightAltBaseHighBrush}"/>
-                                            </ObjectAnimationUsingKeyFrames>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="OverflowTextLabel">
                                                 <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightAltBaseHighBrush}"/>
                                             </ObjectAnimationUsingKeyFrames>
@@ -274,9 +358,6 @@
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="Content">
                                                 <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlDisabledBaseLowBrush}"/>
                                             </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="TextLabel">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlDisabledBaseLowBrush}"/>
-                                            </ObjectAnimationUsingKeyFrames>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="OverflowTextLabel">
                                                 <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlDisabledBaseLowBrush}"/>
                                             </ObjectAnimationUsingKeyFrames>
@@ -285,8 +366,7 @@
                                 </VisualStateGroup>
                             </VisualStateManager.VisualStateGroups>
                             <StackPanel x:Name="ContentRoot" MinHeight="{ThemeResource AppBarThemeCompactHeight}">
-                                <ContentPresenter x:Name="Content" AutomationProperties.AccessibilityView="Raw" Content="{TemplateBinding Icon}" Foreground="{TemplateBinding Foreground}" HorizontalAlignment="Stretch" Height="73" Margin="0"/>
-                                <TextBlock x:Name="TextLabel" Foreground="{TemplateBinding Foreground}" FontSize="12" FontFamily="{TemplateBinding FontFamily}" Margin="0,0,0,6" TextAlignment="Center" TextWrapping="Wrap" Text="{TemplateBinding Label}" d:IsHidden="True"/>
+                                <ContentPresenter x:Name="Content" AutomationProperties.AccessibilityView="Raw" Content="{TemplateBinding Icon}" Foreground="{TemplateBinding Foreground}" HorizontalAlignment="Center" Height="48" Margin="0" HorizontalContentAlignment="Center" VerticalAlignment="Center" Width="30"/>
                             </StackPanel>
                             <TextBlock x:Name="OverflowTextLabel" Foreground="{TemplateBinding Foreground}" FontSize="15" FontFamily="{TemplateBinding FontFamily}" HorizontalAlignment="Stretch" Margin="12,11,0,13" TextAlignment="Left" TextWrapping="NoWrap" Text="{TemplateBinding Label}" TextTrimming="Clip" Visibility="Collapsed" VerticalAlignment="Center"/>
                         </Grid>
@@ -316,15 +396,20 @@
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
         <Grid x:Name="gridDetalhes" Grid.Column="2" Background="White" Margin="12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="172*"/>
+                <ColumnDefinition Width="53*"/>
+                <ColumnDefinition Width="23*"/>
+            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="24*"/>
-                <RowDefinition Height="23*"/>
-                <RowDefinition Height="277*"/>
+                <RowDefinition Height="54*"/>
+                <RowDefinition Height="47*"/>
+                <RowDefinition Height="595*"/>
             </Grid.RowDefinitions>
-            <TextBlock x:Name="ApNumero" HorizontalAlignment="Center" Margin="287,-13,286,0" TextWrapping="Wrap" VerticalAlignment="Center" Height="61" Width="180" Style="{StaticResource HeaderTextBlockStyle}" FontSize="40"  Text="{x:Bind ViewModel.ApAtual.Numero, Mode=OneWay}" TextAlignment="Center"/>
-            <TextBlock x:Name="Ap_Box" HorizontalAlignment="Right" Margin="0,3,8,2" TextWrapping="Wrap" VerticalAlignment="Center" Height="43" Width="64" Style="{StaticResource SubheaderTextBlockStyle}" FontSize="26.667" TextAlignment="Center" Text="{x:Bind ViewModel.ApAtual.Box, Mode=OneWay}"/>
-            <TextBlock x:Name="Ap_Nome" HorizontalAlignment="Left" Margin="16,9,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Height="37" Width="426" Style="{StaticResource HeaderTextBlockStyle}" FontSize="26.667" Grid.Row="1" Text="{x:Bind ViewModel.ApAtual.Nome, Mode=OneWay}"/>
-            <Grid Grid.Row="2">
+            <TextBlock x:Name="ApNumero" HorizontalAlignment="Center" Margin="245,-6,91,46" TextWrapping="Wrap" VerticalAlignment="Center" Height="61" Width="180" Style="{StaticResource HeaderTextBlockStyle}" FontSize="40"  Text="{x:Bind ViewModel.ApAtual.Numero, Mode=OneWay}" TextAlignment="Center" Grid.RowSpan="2"/>
+            <TextBlock x:Name="Ap_Box" HorizontalAlignment="Right" Margin="0,10,0,1" TextWrapping="Wrap" VerticalAlignment="Center" Height="43" Width="134" Style="{StaticResource SubheaderTextBlockStyle}" FontSize="26.667" TextAlignment="Center" Text="{x:Bind ViewModel.ApAtual.Box, Mode=OneWay}" RenderTransformOrigin="0.531,0.535" Grid.Column="1"/>
+            <TextBlock x:Name="Ap_Nome" HorizontalAlignment="Left" Margin="16,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Height="37" Width="426" Style="{StaticResource HeaderTextBlockStyle}" FontSize="26.667" Grid.Row="1" Text="{x:Bind ViewModel.ApAtual.Nome, Mode=OneWay}"/>
+            <Grid Grid.Row="2" Grid.ColumnSpan="3">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
@@ -464,6 +549,9 @@
                     <TextBlock x:Name="textBlock_Copy10" TextWrapping="Wrap" TextAlignment="Center" FontSize="17.333" Grid.Column="3" Grid.Row="1" Text="Data de Término"/>
                 </Grid>
             </Grid>
+            <AppBarButton x:Name="btEditarBox" Icon="Edit" Label="Renomear" Background="{x:Null}" Style="{StaticResource AppBarButtonStyle4}" Grid.Column="2" Width="69" Height="54" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btEditarBox_Click">
+                <AppBarButton x:Name="btRename1_Copy10" Icon="Edit" Label="Renomear" Background="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource AppBarButtonStyle2}" Height="48" Width="48"/>
+            </AppBarButton>
         </Grid>
         <Grid x:Name="gridBlocos" HorizontalAlignment="Center" Height="552" VerticalAlignment="Center" Width="215" Margin="22,79,19,89" Background="#FFCFCFCF">
             <Grid.RowDefinitions>
@@ -479,7 +567,7 @@
                 </Grid.ColumnDefinitions>
                 <AppBarButton x:Name="btRename" HorizontalAlignment="Center" Icon="Edit" Label="Renomear" VerticalAlignment="Center" Background="{x:Null}" Grid.Column="2" Click="btRename_Click"/>
                 <AppBarButton x:Name="btNew" Icon="Add" Label="Novo" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btNew_Click"/>
-                <AppBarButton x:Name="btDelete" Icon="Delete" Label="Deletar" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <AppBarButton x:Name="btDelete" Icon="Delete" Label="Deletar" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btDelete_Click"/>
             </Grid>
             <ListView x:Name="BlocosListView" Background="#FFE6E6E6" ItemsSource="{x:Bind ViewModel.Blocos, Mode=OneWay}" IsItemClickEnabled="True" ItemClick="BlocosListView_ItemClick" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
         </Grid>
@@ -494,9 +582,9 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <AppBarButton x:Name="btRename1" Icon="Edit" Label="Renomear" Background="{x:Null}" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <AppBarButton x:Name="btNew1" Icon="Add" Label="Novo" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <AppBarButton x:Name="btDelete1" Icon="Delete" Label="Deletar" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <AppBarButton x:Name="btRename1" Icon="Edit" Label="Renomear" Background="{x:Null}" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="2,0" Click="btRename1_Click"/>
+                <AppBarButton x:Name="btNew1" Icon="Add" Label="Novo" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btNew1_Click"/>
+                <AppBarButton x:Name="btDelete1" Icon="Delete" Label="Deletar" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btDelete1_Click"/>
             </Grid>
             <ListView x:Name="ApListView" Background="#FFE6E6E6" ItemsSource="{x:Bind ViewModel.Apartamentos, Mode=OneWay}" IsItemClickEnabled="True" ItemClick="ApListView_ItemClick" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
         </Grid>
