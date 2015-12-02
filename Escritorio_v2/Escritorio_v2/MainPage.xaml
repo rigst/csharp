@@ -36,7 +36,7 @@
                     <RowDefinition Height="405*"/>
                     <RowDefinition Height="61*"/>
                 </Grid.RowDefinitions>
-                <ListView x:Name="CondominiosListView" Background="#FFE6E6E6" ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{x:Bind Gerenciador.Condominios, Mode=OneTime}" AllowDrop="True" CanDrag="True"/>
+                <ListView x:Name="CondominiosListView" Background="#FFE6E6E6" ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{x:Bind Gerenciador.Condominios, Mode=OneTime}"/>
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
