@@ -106,6 +106,7 @@ namespace Escritorio_v2
             {
                 textBox.Visibility = Visibility.Collapsed;
                 btOk.Visibility = Visibility.Collapsed;
+                textBox.Text = "";
                 return;
             }
             List<Condominio> lista = minhaApp.Gerenciador.Condominios;
@@ -149,6 +150,8 @@ namespace Escritorio_v2
             await FileIO.WriteTextAsync(file, Gerenciador.getRelatorio());
             textBox.Text = "Arquivo Salvo com Sucesso!";
             textBox.Visibility = Visibility.Visible;
+            btOk.Visibility = Visibility.Visible;
+            controle = "Salvo";
         }
 
         private async void btSaveAs_Click(object sender, RoutedEventArgs e)

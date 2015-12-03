@@ -515,7 +515,7 @@
                 <AppBarButton x:Name="btRename1_Copy3" Icon="Edit" Label="Renomear" Background="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource AppBarButtonStyle2}" Height="48" Width="48"/>
             </AppBarButton>
         </Grid>
-        <Grid x:Name="gridBlocos" HorizontalAlignment="Center" Height="399" VerticalAlignment="Center" Width="215" Margin="21,26,20,26" Background="#FFCFCFCF" Grid.Row="1">
+        <Grid x:Name="gridBlocos" HorizontalAlignment="Center" Height="399" VerticalAlignment="Center" Width="215" Margin="0" Background="#FFCFCFCF" Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="383*"/>
                 <RowDefinition Height="76*"/>
@@ -533,7 +533,7 @@
             </Grid>
             <ListView x:Name="BlocosListView" Background="#FFE6E6E6" ItemsSource="{x:Bind ViewModel.Blocos, Mode=OneWay}" IsItemClickEnabled="True" ItemClick="BlocosListView_ItemClick" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
         </Grid>
-        <Grid x:Name="gridApartamentos" HorizontalAlignment="Center" Height="399" VerticalAlignment="Center" Width="215" Margin="21,26,20,26" Background="#FFCFCFCF" Grid.Column="1" Grid.Row="1">
+        <Grid x:Name="gridApartamentos" HorizontalAlignment="Center" Height="399" VerticalAlignment="Center" Width="215" Margin="0" Background="#FFCFCFCF" Grid.Column="1" Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="191*"/>
                 <RowDefinition Height="39*"/>

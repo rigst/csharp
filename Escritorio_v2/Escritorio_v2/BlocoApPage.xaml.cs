@@ -176,6 +176,7 @@ namespace Escritorio_v2
             {
                 textBox.Visibility = Visibility.Collapsed;
                 btOk.Visibility = Visibility.Collapsed;
+                textBox.Text = "";
                 return;
             }
             string s = textBox.Text;
@@ -659,6 +660,8 @@ namespace Escritorio_v2
             await FileIO.WriteTextAsync(file, minhaApp.Gerenciador.getRelatorio());
             textBox.Text = "Arquivo Salvo com Sucesso!";
             textBox.Visibility = Visibility.Visible;
+            btOk.Visibility = Visibility.Visible;
+            controleEdicao = "Salvo";
         }
 
         private async void btSaveAs_Click(object sender, RoutedEventArgs e)
