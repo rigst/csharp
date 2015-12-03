@@ -48,7 +48,12 @@ namespace Escritorio_v2
             ap2.addAcordo(new Acordo("Catia Jose", "1124/568-4", "IBM", new Data("13/11/87"), new Data("11/11/87"), new Data("11/12/87"), 1200, 200, 4));
             ap2.addAcordo(new Acordo("Maria Oliveira", "1124/568-4", "IBM", new Data("13/11/87"), new Data("11/11/87"), new Data("11/12/87"), 1200, 200, 4));
             ap2.addAcordo(new Acordo("Claudia Oliveira", "1124/568-4", "IBM", new Data("13/11/87"), new Data("11/11/87"), new Data("11/12/87"), 1200, 200, 4));
-            ap2.addProcesso("Simão", "Dinheiro", "1136-9", 2000, new Data("13/11"), new Data("13/5/69"), new Data("05/14/05"));
+            Processo proc = new Processo("Simão", "Dinheiro", "1136-9", 2000, new Data("13/11"), new Data("13/5/69"), new Data("05/14/05"));
+           proc.addAjuizado(new Data("11/12/12"));
+            proc.addAjuizado(new Data("13/13/13"));
+            proc.addCustas(new Data("25/12/15"), 15000);
+            proc.addCustas(new Data("01/01/16"), 20000);
+            ap2.addProcesso(proc);
             ap2.addProcesso("Carlos", "Dinheiro", "1-3256", 2000, new Data("13/11"), new Data("13/5/69"), new Data("05/14/05"));
             ap2.addProcesso("Roberto", "Dinheiro", "8.9798", 2000, new Data("13/11"), new Data("13/5/69"), new Data("05/14/05"));
         }

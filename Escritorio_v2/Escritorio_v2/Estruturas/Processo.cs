@@ -23,15 +23,20 @@ namespace Escritorio_v2
         public Data DataAjuizamento { get { return dataAjuizamento; } set { dataAjuizamento = value; } }
         public Data Periodo { get { return periodo; } set { periodo = value; } }
         public Data UltimoMovimento { get { return ultMov; } set { ultMov = value; } }
-        public List<Data> Ajuizado { get { return ajuizado; } set { ajuizado = value; } }
+        public List<Data> Ajuizados { get { return ajuizado; } set { ajuizado = value; } }
         public List<Custa> Custas { get { return custas; } set { custas = value; } }
 
         public class Custa
         {
             public Data Data { get; set; }
             public double Valor { get; set; }
-            public Custa(Data d, double v) { this.Data = Data; this.Valor = v; }
-            public override String ToString() { return this.Data + "\t" + this.Valor; }
+            public Custa(Data d, double v) { this.Data = d; this.Valor = v; }
+            public override string ToString() {
+                string msg = Data.ToString() + "\t" + Valor;
+                int i;
+                i = 0;
+                return msg;
+            }
         }
 
         public Processo() { }
@@ -41,8 +46,8 @@ namespace Escritorio_v2
         {
             this.reu = reu; this.especie = especie; this.numProcesso = numProcesso; this.valorAjuizado = valorAjuizado;
             this.dataAjuizamento = dataAjuizamento; this.periodo = periodo; this.ultMov = ultMov;
-            ajuizado = null; //chamar metodo
-            custas = null; //chamar metodo
+            ajuizado = new List<Data>();
+            custas = new List<Custa>();
         }
 
         public void addAjuizado(Data d)

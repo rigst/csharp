@@ -1,0 +1,123 @@
+﻿<Page
+    x:Class="Escritorio_v2.ProcessoPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Escritorio_v2"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Page.TopAppBar>
+        <CommandBar Background="#FFCBCBCB" d:IsHidden="True">
+            <CommandBar.SecondaryCommands>
+                <AppBarButton x:Name="btSaveAs" Label="Salvar Como" Icon="SaveLocal"/>
+                <AppBarButton x:Name="btLoadFrom" Label="Carregar Arquivo" Icon="OpenLocal"/>
+            </CommandBar.SecondaryCommands>
+            <CommandBar.Content>
+                <Grid/>
+            </CommandBar.Content>
+            <AppBarButton x:Name="btSave" Icon="Save" Label="Salvar"/>
+            <AppBarButton x:Name="btLoad" Icon="OpenFile" Label="Carregar"/>
+        </CommandBar>
+
+    </Page.TopAppBar>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="98*"/>
+            <RowDefinition Height="42*"/>
+            <RowDefinition Height="282*"/>
+            <RowDefinition Height="31*"/>
+            <RowDefinition Height="267*"/>
+        </Grid.RowDefinitions>
+        <TextBlock x:Name="NomeCondominioTextBlock" HorizontalAlignment="Center" Margin="25,19,24,18" TextWrapping="Wrap" VerticalAlignment="Center" Height="61" Width="1231" Style="{StaticResource HeaderTextBlockStyle}" Text="{x:Bind ViewModel.ApAtual.Numero, Mode=OneWay}" FontSize="40" Grid.ColumnSpan="3"/>
+        <TextBlock x:Name="Ap_Nome" TextWrapping="Wrap" Style="{StaticResource HeaderTextBlockStyle}" FontSize="33.333" Grid.Row="1" Text="Processo" TextAlignment="Center" Grid.Column="1"/>
+        <Grid x:Name="gridApartamentos" HorizontalAlignment="Center" Height="257" VerticalAlignment="Center" Width="1103" Margin="89,13,88,12" Background="#FFCFCFCF" Grid.Row="2" Grid.ColumnSpan="3">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Background="#FFEAEAEA">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="92*"/>
+                    <ColumnDefinition Width="92*"/>
+                    <ColumnDefinition Width="92*"/>
+                    <ColumnDefinition Width="65*"/>
+                    <ColumnDefinition Width="27*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="textBlock" HorizontalAlignment="Center" Margin="17,16,16,16" TextWrapping="Wrap" Text="Número do Processo:" VerticalAlignment="Center" Height="32" Width="243" FontSize="20" TextAlignment="Center"/>
+                <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Center" Margin="17,16,16,16" TextWrapping="Wrap" Text="Réu:" VerticalAlignment="Center" Height="32" Width="243" FontSize="20" TextAlignment="Center" Grid.Row="1"/>
+                <TextBlock x:Name="textBlock_Copy1" HorizontalAlignment="Center" Margin="17,17,16,16" TextWrapping="Wrap" VerticalAlignment="Center" Height="32" Width="243" FontSize="20" TextAlignment="Center" Grid.Row="2" Text="Espécie:"/>
+                <TextBlock x:Name="textBlock_Copy2" HorizontalAlignment="Center" Margin="17,16,16,16" TextWrapping="Wrap" Text="Valor Ajuizado:" VerticalAlignment="Center" Height="32" Width="243" FontSize="20" TextAlignment="Center" Grid.Row="3"/>
+                <TextBlock x:Name="textBlock_Copy3" HorizontalAlignment="Center" Margin="17,16,16,16" TextWrapping="Wrap" Text="Data de Ajuizamento:" VerticalAlignment="Center" Height="32" Width="243" FontSize="20" TextAlignment="Center" Grid.Column="2"/>
+                <TextBlock x:Name="textBlock_Copy4" HorizontalAlignment="Center" Margin="17,16,16,16" TextWrapping="Wrap" Text="Período:" VerticalAlignment="Center" Height="32" Width="243" FontSize="20" TextAlignment="Center" Grid.Column="2" Grid.Row="1"/>
+                <TextBlock x:Name="textBlock_Copy5" HorizontalAlignment="Center" Margin="15,24,18,9" TextWrapping="Wrap" Text="Último Movimento:" VerticalAlignment="Center" Height="32" Width="243" FontSize="20" TextAlignment="Center" Grid.Column="2" Grid.Row="2"/>
+                <TextBox x:Name="ProcessoTextBox" Text="{x:Bind ViewModel.ProcessoAux.NumProcesso, Mode=OneWay}" Grid.Column="1" HorizontalAlignment="Center" Margin="20,12,20,14" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="20" Height="38" Width="236"/>
+                <TextBox x:Name="ReuTextBox" Text="{x:Bind ViewModel.ProcessoAux.Reu, Mode=TwoWay}" Grid.Column="1" HorizontalAlignment="Center" Margin="20,13" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="20" Height="38" Width="236" Grid.Row="1"/>
+                <TextBox x:Name="EspecieTextBox" Text="{x:Bind ViewModel.ProcessoAux.Especie, Mode=OneWay}" Grid.Column="1" HorizontalAlignment="Center" Margin="20,14,20,13" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="20" Height="38" Width="236" Grid.Row="2"/>
+                <TextBox x:Name="ValorATextBox" Text="{x:Bind ViewModel.ProcessoAux.ValorAjuizado, Mode=OneWay}" Grid.Column="1" HorizontalAlignment="Center" Margin="20,13" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="20" Height="38" Width="236" Grid.Row="3"/>
+                <TextBox x:Name="DataATextBox" Text="{x:Bind ViewModel.ProcessoAux.DataAjuizamento, Mode=OneWay}" Grid.Column="3" HorizontalAlignment="Center" Margin="20,13,19,13" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="20" Height="38" Width="236" Grid.ColumnSpan="2"/>
+                <TextBox x:Name="PeriodoTextBox" Text="{x:Bind ViewModel.ProcessoAux.Periodo, Mode=OneWay}" Grid.Column="3" HorizontalAlignment="Center" Margin="20,13,19,13" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="20" Height="38" Width="236" Grid.Row="1" Grid.ColumnSpan="2"/>
+                <TextBox x:Name="UltMovTextBox" Text="{x:Bind ViewModel.ProcessoAux.UltimoMovimento, Mode=OneWay}" Grid.Column="3" HorizontalAlignment="Center" Margin="20,14,19,13" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="20" Height="38" Width="236" Grid.Row="2" Grid.ColumnSpan="2"/>
+                <AppBarButton x:Name="btAceitar" HorizontalAlignment="Right" Icon="Accept" Label="Aceitar" Margin="0" VerticalAlignment="Bottom" Grid.Column="4" Click="btAceitar_Click" Height="61" Grid.Row="3" Background="#FFB9B9B9"/>
+                <TextBlock x:Name="avisoTextBlock" HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" Text="Algumas alterações falharam!" VerticalAlignment="Center" Height="32" Width="375" FontSize="20" TextAlignment="Center" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2" Foreground="#FF8F8F8F"/>
+            </Grid>
+        </Grid>
+        <Grid x:Name="gridApartamentos_Copy" HorizontalAlignment="Center" Height="234" VerticalAlignment="Center" Width="370" Margin="29,18,28,15" Background="#FFCFCFCF" Grid.Row="4" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="191*"/>
+                <RowDefinition Height="39*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <AppBarButton x:Name="btAdiciona1" Icon="Add" Label="Renomear" Background="{x:Null}" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0"/>
+                <AppBarButton x:Name="btDelete1" Icon="Delete" Label="Deletar" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+            <ListView x:Name="AjuizadosListView" Background="#FFE6E6E6" ItemsSource="{x:Bind ViewModel.ProcessoAux.Ajuizados, Mode=OneWay}" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
+        </Grid>
+        <TextBlock x:Name="textBlock_Copy6" TextWrapping="Wrap" Text="Ajuizados" TextAlignment="Center" FontSize="17.333" FontStyle="Italic" Foreground="#FF3F3F3F" Grid.Row="3" Grid.Column="1"/>
+        <TextBlock x:Name="textBlock_Copy7" TextWrapping="Wrap" Text="Custas" TextAlignment="Center" FontSize="17.333" FontStyle="Italic" Foreground="#FF3F3F3F" Grid.Row="3" Grid.Column="2"/>
+        <Grid x:Name="gridApartamentos_Copy1" HorizontalAlignment="Center" Height="234" VerticalAlignment="Center" Width="370" Margin="28,18,28,15" Background="#FFCFCFCF" Grid.Row="4" Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="191*"/>
+                <RowDefinition Height="39*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <AppBarButton x:Name="btAdiciona2" Icon="Add" Label="Renomear" Background="{x:Null}" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0"/>
+                <AppBarButton x:Name="btDelete2" Icon="Delete" Label="Deletar" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+            <ListView x:Name="CustasListView" Background="#FFE6E6E6" ItemsSource="{x:Bind ViewModel.ProcessoAux.Custas, Mode=OneWay}" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
+        </Grid>
+        <Grid HorizontalAlignment="Center" Height="54" Margin="0" VerticalAlignment="Center" Width="392" Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="266*"/>
+                <ColumnDefinition Width="65*"/>
+                <ColumnDefinition Width="61*"/>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="textBox" HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="239" Height="32"/>
+            <AppBarButton x:Name="btOk" Icon="Forward" Label="Ok" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,1,-1" Grid.Column="2" Height="55" Width="60"/>
+            <AppBarButton x:Name="btCancel" Icon="Clear" Label="Cancelar" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="264,0,60,-1" Height="55" Grid.ColumnSpan="3"/>
+        </Grid>
+        <TextBlock x:Name="textBlockAux" TextWrapping="Wrap" FontSize="17.333" Margin="18,76,13,162" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" Width="396" Height="29" >
+        	<Run Text="Data de Assinatura"/>
+        </TextBlock>
+    </Grid>
+</Page>

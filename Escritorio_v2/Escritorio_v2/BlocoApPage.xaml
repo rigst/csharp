@@ -439,7 +439,7 @@
                     <TextBlock x:Name="textBlock_Copy" TextWrapping="Wrap" Text="Número do Processo" TextAlignment="Center" FontSize="17.333" Grid.Column="1" Grid.Row="1"/>
                     <TextBlock x:Name="textBlock_Copy1" TextWrapping="Wrap" Text="Réu" TextAlignment="Center" FontSize="17.333" Grid.Column="2" Grid.Row="1"/>
                     <TextBlock x:Name="textBlock_Copy2" TextWrapping="Wrap" Text="Processos" TextAlignment="Center" FontSize="17.333" Grid.ColumnSpan="3" FontStyle="Italic" Foreground="#FF3F3F3F"/>
-                    <ListView x:Name="ProcessosListView" Background="#FFCFCFCF" ItemsSource="{x:Bind ViewModel.ApAtual.Processos, Mode=OneWay}" ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3" Grid.Row="2"/>
+                    <ListView x:Name="ProcessosListView" Background="#FFCFCFCF" ItemsSource="{x:Bind ViewModel.ApAtual.Processos, Mode=OneWay}" ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3" Grid.Row="2" IsItemClickEnabled="True" ItemClick="ProcessosListView_ItemClick"/>
                     <AppBarButton x:Name="btAdicionar3" Icon="Add" Label="Renomear" Background="{x:Null}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="93,0,76,0" Style="{StaticResource AppBarButtonStyle3}" Width="Auto" Grid.Column="2" Click="btAdicionar3_Click">
                         <AppBarButton x:Name="btRename1_Copy1" Icon="Edit" Label="Renomear" Background="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource AppBarButtonStyle2}" Height="48" Width="48"/>
                     </AppBarButton>

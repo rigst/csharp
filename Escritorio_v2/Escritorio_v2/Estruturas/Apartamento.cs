@@ -98,6 +98,11 @@ namespace Escritorio_v2
             processos.Add( p);
         }
 
+        public void addProcesso(Processo p)
+        {
+            processos.Add(p);
+        }
+
         public bool delProcesso(string numProcesso)
         {
             foreach (var v in processos)

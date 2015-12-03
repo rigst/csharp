@@ -532,8 +532,7 @@ namespace Escritorio_v2
                 Update();
             }
         }
-
-
+        
         private void Update()
         {
             this.Frame.Navigate(typeof(MainPage), ViewModel.Original);
@@ -675,6 +674,13 @@ namespace Escritorio_v2
                 controleEdicao = "Salvo";
             }
         }
+
+        private void ProcessosListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            ViewModel.ProcessoAux = (Processo)e.ClickedItem;
+            this.Frame.Navigate(typeof(ProcessoPage), "");
+        }
+        
     }
 }
 
