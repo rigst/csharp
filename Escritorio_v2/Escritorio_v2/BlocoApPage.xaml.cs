@@ -48,21 +48,27 @@ namespace Escritorio_v2
             base.OnNavigatedTo(e);
             if (e.Parameter != null)
             {
+
                     textBlockAux.Text = "";
                     textBlockAux.Visibility = Visibility.Collapsed;
                     textBox.Visibility = Visibility.Collapsed;
                     btCancel.Visibility = Visibility.Collapsed;
                     btOk.Visibility = Visibility.Collapsed;
 
-                    //ENCONTRA O CONDOMINIO
-                    string nome = (string)e.Parameter;
+                if (((string)e.Parameter).Equals("Processo")) { this.ViewModel = ProcessoPage.getLastInstance().ViewModel; ; return; }
+
+                //ENCONTRA O CONDOMINIO
+                string nome = (string)e.Parameter;
                     App minhaApp = (App)App.Current;
                     Condominio cond = (from c in minhaApp.Gerenciador.Condominios
                                        where c.Nome == nome
                                        select c).FirstOrDefault();
+                    if(cond != null)
+                {
                     this.ViewModel.NomeCondominio = cond.Nome;
                     //ATUALIZA OS BLOCOS
                     UpdateBlocos(cond);
+                }
             }
 
         }
@@ -677,7 +683,8 @@ namespace Escritorio_v2
 
         private void ProcessosListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            ViewModel.ProcessoAux = (Processo)e.ClickedItem;
+            if(e != null)
+                ViewModel.ProcessoAux = (Processo)e.ClickedItem;
             this.Frame.Navigate(typeof(ProcessoPage), "");
         }
         

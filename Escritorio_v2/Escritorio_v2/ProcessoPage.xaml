@@ -83,8 +83,8 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <AppBarButton x:Name="btAdiciona1" Icon="Add" Label="Renomear" Background="{x:Null}" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0"/>
-                <AppBarButton x:Name="btDelete1" Icon="Delete" Label="Deletar" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <AppBarButton x:Name="btAdiciona1" Icon="Add" Label="Renomear" Background="{x:Null}" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" Click="btAdiciona1_Click"/>
+                <AppBarButton x:Name="btDelete1" Icon="Delete" Label="Deletar" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btDelete1_Click"/>
             </Grid>
             <ListView x:Name="AjuizadosListView" Background="#FFE6E6E6" ItemsSource="{x:Bind ViewModel.ProcessoAux.Ajuizados, Mode=OneWay}" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
         </Grid>
@@ -101,20 +101,20 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <AppBarButton x:Name="btAdiciona2" Icon="Add" Label="Renomear" Background="{x:Null}" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0"/>
-                <AppBarButton x:Name="btDelete2" Icon="Delete" Label="Deletar" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <AppBarButton x:Name="btAdiciona2" Icon="Add" Label="Renomear" Background="{x:Null}" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" Click="btAdiciona2_Click"/>
+                <AppBarButton x:Name="btDelete2" Icon="Delete" Label="Deletar" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btDelete2_Click"/>
             </Grid>
             <ListView x:Name="CustasListView" Background="#FFE6E6E6" ItemsSource="{x:Bind ViewModel.ProcessoAux.Custas, Mode=OneWay}" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
         </Grid>
-        <Grid HorizontalAlignment="Center" Height="54" Margin="0" VerticalAlignment="Center" Width="392" Grid.Row="4">
+        <Grid x:Name="gridEntrada" HorizontalAlignment="Center" Height="54" Margin="0" VerticalAlignment="Center" Width="392" Grid.Row="4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="266*"/>
                 <ColumnDefinition Width="65*"/>
                 <ColumnDefinition Width="61*"/>
             </Grid.ColumnDefinitions>
-            <TextBox x:Name="textBox" HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="239" Height="32"/>
-            <AppBarButton x:Name="btOk" Icon="Forward" Label="Ok" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,1,-1" Grid.Column="2" Height="55" Width="60"/>
-            <AppBarButton x:Name="btCancel" Icon="Clear" Label="Cancelar" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="264,0,60,-1" Height="55" Grid.ColumnSpan="3"/>
+            <TextBox x:Name="textBox" HorizontalAlignment="Center" Margin="14,11,13,11" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="239" Height="32" KeyDown="textBox_KeyDown"/>
+            <AppBarButton x:Name="btOk" Icon="Forward" Label="Ok" Grid.Column="2" Margin="0,0,-1,0" Width="62" Click="btOk_Click"/>
+            <AppBarButton x:Name="btCancel" Icon="Clear" Label="Cancelar" Grid.ColumnSpan="2" Grid.Column="1" Click="btCancel_Click"/>
         </Grid>
         <TextBlock x:Name="textBlockAux" TextWrapping="Wrap" FontSize="17.333" Margin="18,76,13,162" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" Width="396" Height="29" >
         	<Run Text="Data de Assinatura"/>

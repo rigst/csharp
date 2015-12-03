@@ -30,12 +30,10 @@ namespace Escritorio_v2
         {
             public Data Data { get; set; }
             public double Valor { get; set; }
+            public Custa() { }
             public Custa(Data d, double v) { this.Data = d; this.Valor = v; }
             public override string ToString() {
-                string msg = Data.ToString() + "\t" + Valor;
-                int i;
-                i = 0;
-                return msg;
+                return Data.ToString() + "\t" + Valor;                
             }
         }
 
