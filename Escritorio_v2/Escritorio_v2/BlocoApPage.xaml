@@ -376,15 +376,15 @@
         </Style>
     </Page.Resources>
     <Page.TopAppBar>
-        <CommandBar Background="#FFCBCBCB" d:IsHidden="True">
+        <CommandBar Background="#FFCBCBCB">
             <CommandBar.SecondaryCommands>
-                <AppBarButton x:Name="btSaveAs" Label="Salvar Como" Icon="SaveLocal"/>
+                <AppBarButton x:Name="btSaveAs" Label="Salvar Como" Icon="SaveLocal" Click="btSaveAs_Click"/>
                 <AppBarButton x:Name="btLoadFrom" Label="Carregar Arquivo" Icon="OpenLocal"/>
             </CommandBar.SecondaryCommands>
             <CommandBar.Content>
                 <Grid/>
             </CommandBar.Content>
-            <AppBarButton x:Name="btSave" Icon="Save" Label="Salvar"/>
+            <AppBarButton x:Name="btSave" Icon="Save" Label="Salvar" Click="btSave_Click"/>
             <AppBarButton x:Name="btLoad" Icon="OpenFile" Label="Carregar"/>
         </CommandBar>
     </Page.TopAppBar>
@@ -515,7 +515,7 @@
                 <AppBarButton x:Name="btRename1_Copy3" Icon="Edit" Label="Renomear" Background="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource AppBarButtonStyle2}" Height="48" Width="48"/>
             </AppBarButton>
         </Grid>
-        <Grid x:Name="gridBlocos" HorizontalAlignment="Center" Height="399" VerticalAlignment="Center" Width="215" Margin="0" Background="#FFCFCFCF" Grid.Row="1">
+        <Grid x:Name="gridBlocos" HorizontalAlignment="Center" Height="399" VerticalAlignment="Center" Width="215" Margin="21,26,20,26" Background="#FFCFCFCF" Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="383*"/>
                 <RowDefinition Height="76*"/>
@@ -533,7 +533,7 @@
             </Grid>
             <ListView x:Name="BlocosListView" Background="#FFE6E6E6" ItemsSource="{x:Bind ViewModel.Blocos, Mode=OneWay}" IsItemClickEnabled="True" ItemClick="BlocosListView_ItemClick" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
         </Grid>
-        <Grid x:Name="gridApartamentos" HorizontalAlignment="Center" Height="399" VerticalAlignment="Center" Width="215" Margin="0" Background="#FFCFCFCF" Grid.Column="1" Grid.Row="1">
+        <Grid x:Name="gridApartamentos" HorizontalAlignment="Center" Height="399" VerticalAlignment="Center" Width="215" Margin="21,26,20,26" Background="#FFCFCFCF" Grid.Column="1" Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="191*"/>
                 <RowDefinition Height="39*"/>
@@ -561,7 +561,7 @@
             <AppBarButton x:Name="btOk" Icon="Forward" Label="Ok" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="6,0,0,-1" Grid.Column="2" Height="55" Click="btOk_Click"/>
             <AppBarButton x:Name="btCancel" Icon="Clear" Label="Cancelar" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="4,0,6,-1" Grid.Column="1" Height="55" Click="btCancel_Click"/>
         </Grid>
-        <TextBlock x:Name="textBlockAux" TextWrapping="Wrap" FontSize="17.333" Margin="0" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2" Width="477" Height="29" >
+        <TextBlock x:Name="textBlockAux" TextWrapping="Wrap" FontSize="17.333" Margin="18,7,17,7" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2" Width="477" Height="29" >
         	<Run Text="Data de "/>
         	<Run Text="Assinatura"/>
         </TextBlock>

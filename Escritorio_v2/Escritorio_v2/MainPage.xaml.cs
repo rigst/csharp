@@ -8,6 +8,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
+using Windows.Storage.Pickers;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -28,6 +29,7 @@ namespace Escritorio_v2
     {
         private Gerenciador Gerenciador { get; set; }
         private static App minhaApp;
+        private string controle;
 
         public MainPage()
         {
@@ -100,6 +102,12 @@ namespace Escritorio_v2
 
         private void btOk_Click(object sender, RoutedEventArgs e)
         {
+            if (controle == "Salvo")
+            {
+                textBox.Visibility = Visibility.Collapsed;
+                btOk.Visibility = Visibility.Collapsed;
+                return;
+            }
             List<Condominio> lista = minhaApp.Gerenciador.Condominios;
 
             string s = textBox.Text;
@@ -140,7 +148,26 @@ namespace Escritorio_v2
             StorageFile file = await fold.CreateFileAsync("armazenado.txt", CreationCollisionOption.ReplaceExisting);
             await FileIO.WriteTextAsync(file, Gerenciador.getRelatorio());
             textBox.Text = "Arquivo Salvo com Sucesso!";
+            textBox.Visibility = Visibility.Visible;
         }
 
+        private async void btSaveAs_Click(object sender, RoutedEventArgs e)
+        {
+            FolderPicker openPicker = new FolderPicker();
+            openPicker.ViewMode = PickerViewMode.Thumbnail;
+            openPicker.SuggestedStartLocation = PickerLocationId.Desktop;
+            openPicker.FileTypeFilter.Add("*");
+
+            StorageFolder folder = await openPicker.PickSingleFolderAsync();
+            if(folder != null)
+            {
+                StorageFile file = await folder.CreateFileAsync("salvo.txt", CreationCollisionOption.ReplaceExisting);
+                await FileIO.WriteTextAsync(file, Gerenciador.getRelatorio());
+                textBox.Text = "Arquivo Salvo com Sucesso!";
+                textBox.Visibility = Visibility.Visible;
+                btOk.Visibility = Visibility.Visible; 
+                controle = "Salvo";
+            }
+        }
     }
 }

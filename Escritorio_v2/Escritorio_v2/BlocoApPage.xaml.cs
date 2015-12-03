@@ -14,6 +14,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Escritorio_v2.ViewModel;
+using Windows.Storage;
+using Windows.Storage.Pickers;
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace Escritorio_v2
@@ -164,6 +166,12 @@ namespace Escritorio_v2
         private void btOk_Click(object sender, RoutedEventArgs e)
         {
             if (btOk.Visibility == Visibility.Collapsed) return;
+            else if (controleEdicao.Equals("Salvo"))
+            {
+                textBox.Visibility = Visibility.Collapsed;
+                btOk.Visibility = Visibility.Collapsed;
+                return;
+            }
             string s = textBox.Text;
             int num = 0;
             if (controleEdicao.Equals("Observação"))
@@ -634,6 +642,37 @@ namespace Escritorio_v2
             {
                 ViewModel.ApAtual.Processos.Remove(p);
                 Update();
+            }
+        }
+
+        private async void btSave_Click(object sender, RoutedEventArgs e)
+        {
+            App minhaApp = (App)App.Current;
+            StorageFolder fold = Windows.Storage.ApplicationData.Current.LocalFolder;
+            //C:\Users\Rodrigo\AppData\Local\Packages\ab4e3a68-b729-4a53-b8d8-05b98dc64adf_m5kereyqkfrtt\LocalState
+            StorageFile file = await fold.CreateFileAsync("armazenado.txt", CreationCollisionOption.ReplaceExisting);
+            await FileIO.WriteTextAsync(file, minhaApp.Gerenciador.getRelatorio());
+            textBox.Text = "Arquivo Salvo com Sucesso!";
+            textBox.Visibility = Visibility.Visible;
+        }
+
+        private async void btSaveAs_Click(object sender, RoutedEventArgs e)
+        {
+            App minhaApp = (App)App.Current;
+            FolderPicker openPicker = new FolderPicker();
+            openPicker.ViewMode = PickerViewMode.Thumbnail;
+            openPicker.SuggestedStartLocation = PickerLocationId.Desktop;
+            openPicker.FileTypeFilter.Add("*");
+
+            StorageFolder folder = await openPicker.PickSingleFolderAsync();
+            if (folder != null)
+            {
+                StorageFile file = await folder.CreateFileAsync("salvo.txt", CreationCollisionOption.ReplaceExisting);
+                await FileIO.WriteTextAsync(file, minhaApp.Gerenciador.getRelatorio());
+                textBox.Text = "Arquivo Salvo com Sucesso!";
+                textBox.Visibility = Visibility.Visible;
+                btOk.Visibility = Visibility.Visible;
+                controleEdicao = "Salvo";
             }
         }
     }

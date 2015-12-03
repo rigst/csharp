@@ -9,7 +9,7 @@
     <Page.TopAppBar>
         <CommandBar>
             <CommandBar.SecondaryCommands>
-                <AppBarButton x:Name="btSaveAs" Label="Salvar Como" Icon="SaveLocal"/>
+                <AppBarButton x:Name="btSaveAs" Label="Salvar Como" Icon="SaveLocal" Click="btSaveAs_Click"/>
                 <AppBarButton x:Name="btLoadFrom" Label="Carregar Arquivo" Icon="OpenLocal"/>
             </CommandBar.SecondaryCommands>
             <CommandBar.Content>
